@@ -1,35 +1,13 @@
 import React from "react"
 import Link from "next/link"
+import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa"
 
 const Contact = () => {
-  const handleSocialMediaClick = (url: string) => {
-    window.open(url, "_blank")
-  }
-  return <>
+  return (
     <div>
-      <h1>Contact Us</h1>
-      <p>
-        Feel free to reach out to us on any of our social media platforms:
-      </p>
-      <ul>
-        <li>
-          <Link href="https://twitter.com" target="_blank">
-            Twitter
-          </Link>
-        </li>
-        <li>
-          <Link href="https://facebook.com" target="_blank">
-            Facebook
-          </Link>
-        </li>
-        <li>
-          <Link href="https://instagram.com" target="_blank">
-            Instagram
-          </Link>
-        </li>
-      </ul>
+      <h1 className="text-5xl text-center font-bold mt-20 mb-12">Contact</h1>
     </div>
-  </>;
+  )
 }
 
 export default Contact

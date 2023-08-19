@@ -53,7 +53,7 @@ export const metadata = {
 
 const Projects = () => {
   return (
-    <div className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl">
+    <>
       <h1 className="text-5xl text-center font-bold mt-20 mb-12">Projects</h1>
       <div className="grid grid-cols-3 gap-8">
         {projects.map((project, idx) => {
@@ -80,7 +80,7 @@ const Projects = () => {
           )
         })}
       </div>
-    </div>
+    </>
   )
 }
 

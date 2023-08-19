@@ -16,7 +16,7 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl">
+    <>
       <h1 className="text-5xl text-center font-bold mt-20 mb-3">
         {project.name}
       </h1>
@@ -105,7 +105,7 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
           })}
         </div>
       </h2>
-    </div>
+    </>
   )
 }
 

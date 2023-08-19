@@ -84,7 +84,9 @@ export default function RootLayout({
         <main className="overflow-hidden mx-auto max-w-5xl flex-col align-center justify-center py-8 px-5 xl:px-0">
           <ThemeProvider enableSystem={true} attribute="class">
             <Navbar />
-            {children}
+            <div className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl">
+              {children}
+            </div>
             <Analytics />
             <Footer />
           </ThemeProvider>
