@@ -218,7 +218,7 @@ const Contact = () => {
                       className:
                         "text-neutral-100 dark:text-neutral-100 fill-zinc-800 dark:fill-zinc-300 ",
                     })
-                  : link.icon({})}
+                  : link.icon()}
               </p>
             </Link>
             // <div
