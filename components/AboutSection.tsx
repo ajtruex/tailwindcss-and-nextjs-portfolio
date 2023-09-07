@@ -37,17 +37,10 @@ const AboutSection = () => {
             </p>
             <br />
             <p>
-              My mission is to create software that not only functions
+              My mission is to create software that not only performs
               seamlessly but also evokes emotions and leaves a lasting
               impression. I love creating software that makes people feel
               something.
-            </p>
-            <br />
-            <p>
-              I like to focus on where technology meets art, and where
-              exceptional software and web experiences come to life. I bring
-              visions to life, while infusing them with intuitive interfaces,
-              visually stunning designs, and seamless interactions.
             </p>
             <br />
             <h2 className="font-bold text-xl text-center">What Drives Me</h2>
