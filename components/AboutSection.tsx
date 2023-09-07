@@ -43,13 +43,6 @@ const AboutSection = () => {
               something.
             </p>
             <br />
-            <p>
-              I like to focus on where technology meets art, and where
-              exceptional software and web experiences come to life. I bring
-              visions to life, while infusing them with intuitive interfaces,
-              visually stunning designs, and seamless interactions.
-            </p>
-            <br />
             <h2 className="font-bold text-xl text-center">What Drives Me</h2>
             <br />
             <ul className="list-disc">
