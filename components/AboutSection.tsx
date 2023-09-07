@@ -42,6 +42,7 @@ const AboutSection = () => {
               impression. I love creating software that makes people feel
               something.
             </p>
+            piss
             <br />
             <h2 className="font-bold text-xl text-center">What Drives Me</h2>
             <br />
