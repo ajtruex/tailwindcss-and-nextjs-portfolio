@@ -41,7 +41,7 @@ export default async function NowPlaying() {
 
   return (
     <div
-      className=" dark:from-neutral-800 dark:to-zinc-800  from-neutral-200 to-zinc-200 rounded-lg shadow-xl p-4 flex justify-between gap-2  bg-contain bg-repeat"
+      className=" rounded-lg shadow-xl p-4 flex justify-between gap-2  bg-contain bg-repeat"
       style={{ backgroundImage: `url(${image})` }}
     >
       <div className="flex flex-col justify-between">

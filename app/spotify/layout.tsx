@@ -39,5 +39,7 @@ export default function SpotifyLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <section className={`${circular.variable}`}>{children}</section>
+  return (
+    <section className={`${circular.variable} antialiased`}>{children}</section>
+  )
 }

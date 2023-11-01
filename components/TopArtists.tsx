@@ -16,8 +16,8 @@ export default function TopArtists() {
     fetcher
   )
   return (
-    <div>
-      <div className="dark:bg-gradient-to-r dark:from-neutral-800 dark:to-zinc-800 bg-gradient-to-r from-neutral-200 to-zinc-200 rounded-lg shadow-xl p-4 flex flex-col justify-between gap-2 mb-6">
+    <div className="flex space-x-4 ">
+      <div className="dark:bg-gradient-to-r dark:from-neutral-900 dark:to-zinc-800 bg-gradient-to-r from-neutral-200 to-zinc-200 rounded-lg shadow-xl p-4 flex flex-col justify-between gap-2 w-1/2">
         <div>
           <h2 className="m-0 dark:text-zinc-200 text-zinc-900 font-black text-xl">
             Top Artists
@@ -44,7 +44,7 @@ export default function TopArtists() {
           ))}
         </div>
       </div>
-      <div className="dark:bg-gradient-to-r dark:from-neutral-800 dark:to-zinc-800 bg-gradient-to-r from-neutral-200 to-zinc-200 rounded-lg shadow-xl p-4 flex flex-col justify-between gap-2">
+      <div className="dark:bg-gradient-to-r dark:from-neutral-900 dark:to-zinc-800 bg-gradient-to-r from-neutral-200 to-zinc-200 rounded-lg shadow-xl p-4 flex flex-col justify-between gap-2 w-1/2">
         <div>
           <h2 className="m-0 dark:text-zinc-200 text-zinc-900 font-black text-xl">
             Top Artists
