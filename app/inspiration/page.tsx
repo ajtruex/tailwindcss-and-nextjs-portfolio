@@ -57,6 +57,16 @@ export default function Inspiration() {
           </video>
         </div>
       </div>
+      <video
+        controls
+        poster="https://d34073qwlt06j3.cloudfront.net/daft-punk-poster.webp"
+        className="rounded-xl mt-8"
+      >
+        <source
+          src="https://d34073qwlt06j3.cloudfront.net/Daft_Punk-Alive_2007_Wireless_O2.mp4"
+          type="video/mp4"
+        />
+      </video>
     </div>
   )
 }
