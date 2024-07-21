@@ -136,7 +136,7 @@ const Stack = () => {
               key={idx}
               className="group flex cursor-pointer flex-col rounded-2xl bg-[#111111] dark:bg-gradient-to-r dark:from-neutral-800 dark:to-zinc-800 w-[200px] md:w-full"
             >
-              <HoverCard>
+              <HoverCard openDelay={400}>
                 <HoverCardTrigger asChild>
                   <Link
                     href={item.link}
@@ -159,7 +159,7 @@ const Stack = () => {
                     </div>
                   </Link>
                 </HoverCardTrigger>
-                <HoverCardContent className="w-80">
+                <HoverCardContent className="w-80 rounded-2xl">
                   <div className="flex justify-between space-x-4">
                     <Avatar>
                       <AvatarImage src={item.image} />
@@ -194,7 +194,7 @@ const Stack = () => {
               key={idx}
               className="group flex cursor-pointer flex-col rounded-2xl bg-[#111111] dark:bg-gradient-to-r dark:from-neutral-800 dark:to-zinc-800 w-[200px] md:w-full"
             >
-              <HoverCard>
+              <HoverCard openDelay={400}>
                 <HoverCardTrigger asChild>
                   <Link
                     href={item.link}
@@ -217,7 +217,7 @@ const Stack = () => {
                     </div>
                   </Link>
                 </HoverCardTrigger>
-                <HoverCardContent className="w-80">
+                <HoverCardContent className="w-80 rounded-2xl">
                   <div className="flex justify-between space-x-4">
                     <Avatar>
                       <AvatarImage
