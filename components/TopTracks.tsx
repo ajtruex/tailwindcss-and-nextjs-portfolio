@@ -30,7 +30,7 @@ export default function TopTracks() {
           </h2>
           <div className="relative">
             <button
-              className="dark:bg-zinc-800 p-2 rounded dark:hover:bg-zinc-800 text-sm dark:text-zinc-400 text-zinc-700 bg-zinc-300 hover:bg-zinc-400"
+              className="dark:bg-zinc-800 p-2 rounded dark:hover:bg-zinc-800 text-sm dark:text-zinc-400 text-zinc-900 bg-zinc-300 hover:bg-zinc-400 "
               onClick={() => setIsOpen(!isOpen)}
               value={to}
             >
@@ -72,12 +72,12 @@ export default function TopTracks() {
                 <Link
                   href={track.url}
                   key={index}
-                  className="flex justify-between items-center dark:hover:bg-zinc-900/60 hover:bg-zinc-100/60 rounded-lg p-2 hover:shadow-lg cursor-pointer duration-200"
+                  className="flex justify-between items-start dark:hover:bg-zinc-900/60 hover:bg-zinc-100/60 rounded-lg p-2 hover:shadow-lg cursor-pointer duration-200"
                   target="_blank"
                 >
-                  <p className="dark:text-zinc-200 text-zinc-900 m-0 flex flex-col">
+                  <p className="dark:text-zinc-200 text-zinc-900 m-0 inline-block truncate w-4/5 ">
                     {track.name}{" "}
-                    <span className="text-xs dark:text-zinc-400 text-zinc-700">
+                    <span className="text-xs dark:text-zinc-400 text-zinc-700 flex flex-col">
                       {track.artist}
                     </span>
                   </p>
@@ -94,12 +94,12 @@ export default function TopTracks() {
                 <Link
                   href={track.url}
                   key={index}
-                  className="flex justify-between items-center dark:hover:bg-zinc-900/60 hover:bg-zinc-100/60 rounded-lg p-2 hover:shadow-lg cursor-pointer duration-200 truncate"
+                  className="flex justify-between items-start dark:hover:bg-zinc-900/60 hover:bg-zinc-100/60 rounded-lg p-2 hover:shadow-lg cursor-pointer duration-200 truncate"
                   target="_blank"
                 >
-                  <p className="dark:text-zinc-200 text-zinc-900 m-0 flex flex-col truncate">
+                  <p className="dark:text-zinc-200 text-zinc-900 m-0 inline-block truncate w-4/5">
                     {track.name}{" "}
-                    <span className="text-xs dark:text-zinc-400 text-zinc-700">
+                    <span className="text-xs dark:text-zinc-400 text-zinc-700 flex flex-col">
                       {track.artist}
                     </span>
                   </p>

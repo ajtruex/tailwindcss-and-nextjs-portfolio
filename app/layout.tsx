@@ -1,4 +1,4 @@
-import "../styles/globals.css"
+import "./globals.css"
 import { Inter } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
@@ -128,7 +128,7 @@ export default function RootLayout({
         `}
         </Script>
       </head>
-      <body>
+      <body className="bg-white dark:bg-black">
         {/* <link rel="icon" href="/win98.ico" sizes="16x16 32x32" />
         <link
           rel="apple-touch-icon"
