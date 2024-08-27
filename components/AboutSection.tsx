@@ -52,7 +52,7 @@ const AboutSection = () => {
             <br />
             <h2 className="font-bold text-xl text-center">What Drives Me</h2>
             <br />
-            <ul className="list-disc">
+            <ul className="list-none">
               <li>
                 <span className="font-bold">A thirst for knowledge:</span> My
                 desire to learn anything that will improve my web development
