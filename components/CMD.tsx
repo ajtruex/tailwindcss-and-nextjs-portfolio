@@ -9,6 +9,7 @@ import {
   Code,
   User,
   Zap,
+  Lightbulb,
 } from "lucide-react"
 
 import {
@@ -133,7 +134,7 @@ export default function CommandMenu({ open, setOpen }) {
               }}
               className="hover:cursor-pointer"
             >
-              <Zap className="mr-2" />
+              <Lightbulb className="mr-2" />
               <span>Inspiration</span>
             </CommandItem>
           </CommandGroup>

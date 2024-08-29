@@ -4,9 +4,14 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
-import { RiMoonFill, RiSunLine, RiLoader4Line } from "react-icons/ri"
+import {
+  RiMoonFill,
+  RiSunLine,
+  RiLoader4Line,
+  RiLightbulbFlashLine,
+} from "react-icons/ri"
 import { IoMdMenu, IoMdClose } from "react-icons/io"
-import { FiHeadphones, FiZap } from "react-icons/fi"
+import { FiHeadphones } from "react-icons/fi"
 import clsx from "clsx"
 
 const NAV_ITEMS = [
@@ -41,7 +46,7 @@ const ICON_ITEMS = [
   {
     label: "Inspiration",
     page: "/inspiration",
-    icon: "FiZap",
+    icon: "RiLightbulbFlashLine",
   },
 ]
 
@@ -135,9 +140,9 @@ const Navbar = () => {
                         {item.label}
                       </div>
                     </div>
-                  ) : item.icon === "FiZap" ? (
+                  ) : item.icon === "RiLightbulbFlashLine" ? (
                     <div className="relative inline-block group">
-                      <FiZap size={25} />
+                      <RiLightbulbFlashLine size={25} />
                       <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute z-20 dark:bg-black rounded shadow-lg p-1.5 hidden md:inline-block -ml-8 mt-4 leading-none">
                         {item.label}
                       </div>
