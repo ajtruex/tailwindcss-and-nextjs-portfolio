@@ -136,7 +136,7 @@ const Stack = () => {
               key={idx}
               className="group flex cursor-pointer flex-col rounded-2xl bg-[#111111] dark:bg-gradient-to-r dark:from-neutral-800 dark:to-zinc-800 w-[200px] md:w-full"
             >
-              <HoverCard openDelay={400}>
+              <HoverCard openDelay={300}>
                 <HoverCardTrigger asChild>
                   <Link
                     href={item.link}
@@ -194,7 +194,7 @@ const Stack = () => {
               key={idx}
               className="group flex cursor-pointer flex-col rounded-2xl bg-[#111111] dark:bg-gradient-to-r dark:from-neutral-800 dark:to-zinc-800 w-[200px] md:w-full"
             >
-              <HoverCard openDelay={400}>
+              <HoverCard openDelay={300}>
                 <HoverCardTrigger asChild>
                   <Link
                     href={item.link}
