@@ -38,6 +38,23 @@ const garamond = localFont({
   variable: "--font-garamond",
 })
 
+const gtsuperdisplay = localFont({
+  src: [
+    {
+      path: "../../fonts/GT Super Display.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../fonts/GT Super Display Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  variable: "--font-gtsuperdisplay",
+})
+
 export const metadata = {
   title: "Inspiration",
   icons: {
@@ -51,7 +68,10 @@ export default function InspoLayout({
   children: React.ReactNode
 }) {
   return (
-    <section className={`${seasons.variable} ${garamond.variable}`}>
+    <section
+      className={`${seasons.variable} ${garamond.variable}
+      ${gtsuperdisplay.variable}`}
+    >
       {children}
     </section>
   )

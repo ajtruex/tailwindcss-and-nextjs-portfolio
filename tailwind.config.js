@@ -22,6 +22,8 @@ module.exports = {
         circular: ["var(--font-circular)"],
         seasons: ["var(--font-seasons)"],
         garamond: ["var(--font-garamond)"],
+        gtsuperdisplay: ["var(--font-gtsuperdisplay)"],
+        serif: ["var(--font-serif)"],
       },
       keyframes: {
         bounce: {

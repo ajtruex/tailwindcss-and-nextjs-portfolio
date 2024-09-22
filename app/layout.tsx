@@ -1,5 +1,5 @@
 import "./globals.css"
-import { Inter } from "next/font/google"
+import { Inter, Instrument_Serif } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import Navbar from "@/components/Navbar"
@@ -59,6 +59,13 @@ const inter = Inter({
   variable: "--font-inter",
 })
 
+const serif = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-serif",
+})
+
 export default function RootLayout({
   children,
 }: {
@@ -67,7 +74,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} antialiased`}
+      className={`${inter.variable} ${serif.variable}
+        antialiased`}
       suppressHydrationWarning
     >
       {/*

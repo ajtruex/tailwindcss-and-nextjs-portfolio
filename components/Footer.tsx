@@ -21,7 +21,7 @@ const Footer = () => {
       <hr className="w-full h-0.5 mx-auto mt-8 bg-black dark:bg-neutral-200 border-0" />
       <div className="mx-auto  p-4 flex flex-col text-center  md:flex-row md:justify-between">
         <div className="flex flex-row items-center justify-center space-x-1 text-black dark:text-neutral-100">
-          © 2024 Andrew Truex
+          © {new Date().getFullYear()} Andrew Truex
         </div>
         <div className="flex flex-row items-center justify-center space-x-2 mb-1">
           <p

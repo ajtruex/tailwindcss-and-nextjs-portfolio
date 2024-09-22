@@ -26,7 +26,7 @@ export default function Inspiration() {
         />
       </video> */}
       <div className="flex flex-col">
-        <h1 className="text-5xl sm:text-8xl font-bold items-end text-end justify-end mt-12 tracking-tight font-seasons">
+        <h1 className="text-5xl sm:text-8xl font-bold items-end text-end justify-end mt-6 sm:mt-12 tracking-tight font-seasons">
           Memento Mori
         </h1>
         <p className="text-xl sm:text-3xl text-gray-400 mr-4 sm:mr-[104px] items-end text-end justify-end tracking-tight font-seasons">

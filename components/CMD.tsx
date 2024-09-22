@@ -55,6 +55,7 @@ export default function CommandMenu({ open, setOpen }) {
 
     document.addEventListener("keydown", down)
     return () => document.removeEventListener("keydown", down)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
