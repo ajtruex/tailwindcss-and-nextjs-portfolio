@@ -9,7 +9,7 @@ async function getNpOrRpSong() {
       headers: {
         "Content-Type": "application/json",
       },
-      cache: "no-store",
+      cache: "force-cache",
     }
   )
   return res.json()
