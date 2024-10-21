@@ -1,8 +1,10 @@
 "use client"
 import React from "react"
 import Image from "next/image"
-import { Link } from "react-scroll/modules"
+import Link from "next/link"
 import { HiArrowDown } from "react-icons/hi"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Github, Linkedin, Mail } from "lucide-react"
 
 export const HeroSection = () => {
   return (
@@ -37,6 +39,78 @@ export const HeroSection = () => {
           >
             Projects
           </Link> */}
+        </div>
+      </div>
+      <div className="flex flex-col justify-center items-center mb-12">
+        <div className="flex flex-row w-2/3 justify-between">
+          <div className="relative inline-block p-[2px] bg-gradient-to-r from-indigo-500  via-violet-700  to-fuchsia-500 rounded-md">
+            <Link
+              className={buttonVariants({ variant: "outline" })}
+              href="https://github.com/ajtruex"
+              target="_blank"
+            >
+              <Github className="mr-2" />
+              Github
+            </Link>
+            {/* <Button
+              variant="outline"
+              size="default"
+              className="
+          w-36
+
+        "
+            >
+
+              <Github className="mr-2" />
+              Github
+
+            </Button> */}
+          </div>
+          <div className="relative inline-block p-[2px] bg-gradient-to-r from-green-800 via-teal-700 to-sky-900 rounded-md">
+            <Link
+              className={buttonVariants({ variant: "outline" })}
+              href="https://www.linkedin.com/in/ajtruex/"
+              target="_blank"
+            >
+              <Linkedin className="mr-2" />
+              Linkedin
+            </Link>
+            {/* <Button
+              variant="outline"
+              size="default"
+              className="
+
+          w-36
+
+
+        "
+            >
+              <Linkedin className="mr-2" />
+              Linkedin
+            </Button> */}
+          </div>
+          <div className="relative inline-block p-[2px] bg-gradient-to-r from-indigo-500 via-blue-700 to-cyan-200 rounded-md">
+            <Link
+              className={buttonVariants({ variant: "outline" })}
+              href="mailto:andrewtruex@gmail.com"
+              target="_blank"
+            >
+              <Mail className="mr-2" />
+              Email
+            </Link>
+            {/* <Button
+              variant="outline"
+              size="default"
+              className="
+          w-36
+
+
+        "
+            >
+              <Mail className="mr-2" />
+              Email
+            </Button> */}
+          </div>
         </div>
       </div>
       {/* <div className="flex flex-row items-center justify-center text-center">
