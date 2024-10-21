@@ -13,7 +13,6 @@ import {
   Star,
   Plus,
 } from "lucide-react"
-import { stat } from "fs"
 
 const getActivityIcon = (type) => {
   switch (type) {
@@ -36,7 +35,7 @@ const GitHubDashboard = ({ username = "ajtruex" }) => {
   const [error, setError] = useState(null)
   const [data, setData] = useState({
     events: [],
-    user: "ajtruex",
+    user: null,
     repos: [],
     statistics: {
       contributions: 0,
@@ -97,7 +96,7 @@ const GitHubDashboard = ({ username = "ajtruex" }) => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-zinc-500" />
       </div>
     )
   }
