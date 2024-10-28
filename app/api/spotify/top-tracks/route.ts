@@ -1,10 +1,10 @@
-import { getTopTracks } from "../../lib/spotify"
+import { getTopTracks } from "@/lib/spotify"
 
 export const config = {
   runtime: "edge",
 }
 
-export default async function handler(req) {
+export async function GET(request: Request) {
   const resp = await getTopTracks()
 
   if (resp.status !== 200) {

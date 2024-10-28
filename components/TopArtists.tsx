@@ -1,6 +1,6 @@
 "use client"
 import useSWR from "swr"
-import fetcher from "../lib/fetcher"
+import fetcher from "@/lib/fetcher"
 import Link from "next/link"
 import { useState } from "react"
 import { FiChevronDown } from "react-icons/fi"
@@ -14,9 +14,12 @@ export type TopArtistsResponse = {
 export default function TopArtists() {
   const [to, setTo] = useState("Month")
   const [isOpen, setIsOpen] = useState(false)
-  const { data } = useSWR<TopArtistsResponse[]>("/api/top-artists", fetcher)
+  const { data } = useSWR<TopArtistsResponse[]>(
+    "/api/spotify/top-artists",
+    fetcher
+  )
   const { data: year } = useSWR<TopArtistsResponse[]>(
-    "/api/top-artists-year",
+    "/api/spotify/top-artists-year",
     fetcher
   )
 

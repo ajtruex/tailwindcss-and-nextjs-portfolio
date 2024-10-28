@@ -1,5 +1,5 @@
 "use client"
-import fetcher from "../lib/fetcher"
+import fetcher from "@/lib/fetcher"
 import useSWR from "swr"
 import Link from "next/link"
 import { useState } from "react"
@@ -15,9 +15,12 @@ export type TopTracksResponse = {
 export default function TopTracks() {
   const [to, setTo] = useState("Month")
   const [isOpen, setIsOpen] = useState(false)
-  const { data } = useSWR<TopTracksResponse[]>("/api/top-tracks", fetcher)
+  const { data } = useSWR<TopTracksResponse[]>(
+    "/api/spotify/top-tracks",
+    fetcher
+  )
   const { data: year } = useSWR<TopTracksResponse[]>(
-    "/api/top-tracks-year",
+    "/api/spotify/top-tracks-year",
     fetcher
   )
 

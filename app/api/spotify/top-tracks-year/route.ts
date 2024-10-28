@@ -1,10 +1,10 @@
-import { getTopTracksYear } from "../../lib/spotify"
+import { getTopTracksYear } from "@/lib/spotify"
 
 export const config = {
   runtime: "edge",
 }
 
-export default async function handler(req) {
+export async function GET(request: Request) {
   const resp = await getTopTracksYear()
 
   if (resp.status !== 200) {
