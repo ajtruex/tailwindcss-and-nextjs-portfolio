@@ -1,6 +1,6 @@
 import "./globals.css"
 import { Inter, Instrument_Serif } from "next/font/google"
-// import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import Navbar from "@/components/Navbar"
 import { Provider } from "./theme-provider"
@@ -154,7 +154,7 @@ export default function RootLayout({
               <Navbar />
               {children}
               <CommandMenu open={undefined} setOpen={undefined} />
-              {/* <SpeedInsights /> */}
+              <SpeedInsights />
               <Analytics />
               <Footer />
             </CSPostHogProvider>
