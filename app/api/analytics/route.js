@@ -4,7 +4,7 @@ const options = {
   method: "GET",
   headers: {
     Accept: "application/json",
-    "x-umami-api-key": `${process.env.UMAMI_API_KEY}`,
+    "x-umami-api-key": process.env.UMAMI_API_KEY,
   },
 }
 
