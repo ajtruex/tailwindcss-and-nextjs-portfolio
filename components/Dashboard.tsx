@@ -12,6 +12,8 @@ import {
   GitPullRequest,
   Star,
   Plus,
+  Disc,
+  Eye,
 } from "lucide-react"
 
 const getActivityIcon = (type) => {
@@ -30,7 +32,7 @@ const getActivityIcon = (type) => {
   }
 }
 
-const GitHubDashboard = ({ username = "ajtruex" }) => {
+const Dashboard = ({ username = "ajtruex" }) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [data, setData] = useState({
@@ -43,6 +45,8 @@ const GitHubDashboard = ({ username = "ajtruex" }) => {
       stars: 0,
     },
     stats: [],
+    pageviews: {},
+    playcount: {},
   })
 
   useEffect(() => {
@@ -51,40 +55,58 @@ const GitHubDashboard = ({ username = "ajtruex" }) => {
         setLoading(true)
         setError(null)
 
-        // Fetch data in parallel
-        const [eventsResponse, userResponse, reposResponse, statsResponse] =
-          await Promise.all([
-            fetch(`/api/github/events?username=${username}`),
-            fetch(`/api/github/user?username=${username}`),
-            fetch(`/api/github/repos?username=${username}`),
-            fetch(`/api/github/stats?username=${username}`),
-          ])
+        // Fetch data sequentially
+        const eventsResponse = await fetch(
+          `/api/github/events?username=${username}`
+        )
+        if (!eventsResponse.ok) throw new Error("Failed to fetch GitHub events")
+        const events = await eventsResponse.json()
 
-        // Check if any request failed
-        if (!eventsResponse.ok || !userResponse.ok || !reposResponse.ok) {
-          throw new Error("Failed to fetch GitHub data")
-        }
+        const userResponse = await fetch(
+          `/api/github/user?username=${username}`
+        )
+        if (!userResponse.ok) throw new Error("Failed to fetch GitHub user")
+        const user = await userResponse.json()
 
-        // Parse responses
-        const [events, user, repos, stats] = await Promise.all([
-          eventsResponse.json(),
-          userResponse.json(),
-          reposResponse.json(),
-          statsResponse.json(),
-        ])
-        // console.log(statsData)
+        const reposResponse = await fetch(
+          `/api/github/repos?username=${username}`
+        )
+        if (!reposResponse.ok) throw new Error("Failed to fetch GitHub repos")
+        const repos = await reposResponse.json()
+
+        const statsResponse = await fetch(
+          `/api/github/stats?username=${username}`
+        )
+        if (!statsResponse.ok) throw new Error("Failed to fetch GitHub stats")
+        const stats = await statsResponse.json()
+
+        const pageviewsResponse = await fetch(`/api/analytics`)
+        if (!pageviewsResponse.ok) throw new Error("Failed to fetch pageviews")
+        const pageviews = await pageviewsResponse.json()
+
+        const playcountResponse = await fetch(`/api/playcount`)
+        if (!playcountResponse.ok) throw new Error("Failed to fetch playcount")
+        const playcount = await playcountResponse.json()
+
         // Calculate stats
         const statistics = {
           contributions: events.length, // This is simplified
           repositories: repos.length,
-
           stars: stats.total_stars,
         }
 
-        setData({ events, user, repos, statistics, stats })
+        setData({
+          events,
+          user,
+          repos,
+          statistics,
+          stats,
+          pageviews,
+          playcount,
+        })
       } catch (err) {
         console.error("Error fetching GitHub data:", err)
-        setError(err.message)
+        setError((err as Error).message)
       } finally {
         setLoading(false)
       }
@@ -112,13 +134,13 @@ const GitHubDashboard = ({ username = "ajtruex" }) => {
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       <h1 className="text-center font-bold text-4xl">
-        GitHub Dashboard
+        Dashboard
         <hr className="w-6 h-1 mx-auto my-4 bg-gradient-to-r from-indigo-500    to-fuchsia-500 border-0 rounded"></hr>
       </h1>
       <div>
         <div className="max-w-4xl mx-auto p-6 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-4">
+            {/* <Card>
               <CardHeader className="flex flex-row items-center justify-center space-x-6 space-y-0 pb-2">
                 <CardTitle className="text-base font-medium">
                   Recent Contributions
@@ -130,9 +152,9 @@ const GitHubDashboard = ({ username = "ajtruex" }) => {
                   {data.statistics.contributions}
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
             <Card>
-              <CardHeader className="flex flex-row items-center justify-center space-x-6 space-y-0 pb-2">
+              <CardHeader className="flex flex-row items-center justify-center space-x-4 space-y-0 pb-2">
                 <CardTitle className="text-base font-medium">
                   Repositories
                 </CardTitle>
@@ -146,13 +168,39 @@ const GitHubDashboard = ({ username = "ajtruex" }) => {
             </Card>
 
             <Card>
-              <CardHeader className="flex flex-row items-center justify-center space-x-6 space-y-0 pb-2">
+              <CardHeader className="flex flex-row items-center justify-center space-x-4 space-y-0 pb-2">
                 <CardTitle className="text-base font-medium">Stars</CardTitle>
                 <Star className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent className="flex justify-center items-center">
                 <div className="text-2xl font-bold">
                   {data.stats.total_stars}
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-center space-x-4 space-y-0 pb-2">
+                <CardTitle className="text-base font-medium">
+                  Website Views
+                </CardTitle>
+                <Eye className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent className="flex justify-center items-center">
+                <div className="text-2xl font-bold">
+                  {data.pageviews.pageviews.value.toLocaleString()}
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="">
+              <CardHeader className="flex flex-row items-center justify-center space-x-2 space-y-0 pb-2">
+                <CardTitle className="text-base font-medium text-nowrap">
+                  Last.fm Scrobbles
+                </CardTitle>
+                <Disc className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent className="flex justify-center items-center">
+                <div className="text-2xl font-bold">
+                  {Number(data.playcount.user.playcount).toLocaleString()}
                 </div>
               </CardContent>
             </Card>
@@ -193,4 +241,4 @@ const GitHubDashboard = ({ username = "ajtruex" }) => {
   )
 }
 
-export default GitHubDashboard
+export default Dashboard

@@ -12,6 +12,7 @@ import {
 } from "react-icons/ri"
 import { IoMdMenu, IoMdClose } from "react-icons/io"
 import { FiHeadphones } from "react-icons/fi"
+import { Activity } from "lucide-react"
 import clsx from "clsx"
 
 const NAV_ITEMS = [
@@ -48,6 +49,11 @@ const ICON_ITEMS = [
     page: "/inspiration",
     icon: "RiLightbulbFlashLine",
   },
+  {
+    label: "Now",
+    page: "/now",
+    icon: "Activity",
+  },
 ]
 
 const Navbar = () => {
@@ -67,7 +73,7 @@ const Navbar = () => {
 
   return (
     <div className="flex flex-col items-center md:items-start md:px-5">
-      <div className="flex cursor-pointer flex-row items-center justify-center md:max-lg:space-x-1 space-x-3">
+      <div className="flex cursor-pointer flex-row items-center justify-between md:max-lg:space-x-3 space-x-3">
         <Link href="/">
           <Image
             className="shadow-xl w-[60px] rounded-full border-none bg-black dark:bg-hoverBlack"
@@ -81,7 +87,7 @@ const Navbar = () => {
 
         <Link href="/">
           <div className="container lg:flex items-center space-x-2">
-            <h2 className="lg:text-2xl text-xl font-bold lg:mr-4 mr-2 tracking-tight">
+            <h2 className="xl:text-2xl text-lg font-bold lg:mr-4 mr-2 lg:ml-4 ">
               Andrew Truex
             </h2>
           </div>
@@ -144,6 +150,13 @@ const Navbar = () => {
                     <div className="relative inline-block group">
                       <RiLightbulbFlashLine size={25} />
                       <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute z-20 dark:bg-black rounded shadow-lg p-1.5 hidden md:inline-block -ml-8 mt-4 leading-none">
+                        {item.label}
+                      </div>
+                    </div>
+                  ) : item.icon === "Activity" ? (
+                    <div className="relative inline-block group">
+                      <Activity size={25} />
+                      <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute z-20 dark:bg-black rounded shadow-lg p-1.5 hidden md:inline-block -ml-6 mt-4 leading-none">
                         {item.label}
                       </div>
                     </div>

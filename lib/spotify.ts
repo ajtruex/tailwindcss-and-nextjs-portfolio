@@ -49,3 +49,14 @@ export async function getTopTracksYear() {
     }
   )
 }
+
+export async function getPlaycount() {
+  return fetch(
+    `http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=ajtruex&api_key=${process.env.LASTFM_API_KEY}&format=json`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
+}
