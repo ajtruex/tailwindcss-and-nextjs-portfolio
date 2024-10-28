@@ -106,7 +106,7 @@ const Dashboard = ({ username = "ajtruex" }) => {
         })
       } catch (err) {
         console.error("Error fetching GitHub data:", err)
-        setError((err as Error).message)
+        setError(err.message)
       } finally {
         setLoading(false)
       }
@@ -193,7 +193,7 @@ const Dashboard = ({ username = "ajtruex" }) => {
             </Card>
             <Card className="">
               <CardHeader className="flex flex-row items-center justify-center space-x-2 space-y-0 pb-2">
-                <CardTitle className="text-base font-medium text-nowrap">
+                <CardTitle className="text-base tracking-tighter font-medium">
                   Last.fm Scrobbles
                 </CardTitle>
                 <Disc className="h-4 w-4 text-muted-foreground" />
