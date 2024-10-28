@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "app",
+    card: "summary",
     title: "Andrew Truex",
     description: "Andrew Truex's Portfolio Website",
     siteId: "1197062210507431937",
