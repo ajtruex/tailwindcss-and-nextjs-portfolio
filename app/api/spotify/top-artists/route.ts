@@ -1,8 +1,6 @@
 import { getTopArtists } from "@/lib/spotify"
 
-export const config = {
-  runtime: "edge",
-}
+export const runtime = "edge"
 
 export async function GET(request: Request) {
   const resp = await getTopArtists()
