@@ -1,5 +1,7 @@
-const url =
-  "https://api.umami.is/v1/websites/c1ecb30b-bd10-49c9-8eae-34471d9e3830/stats?startAt=1688190600000&endAt=1730094590464"
+const startAt = 1688190600000 // Example start time in milliseconds
+const endAt = Date.now()
+
+const url = `https://api.umami.is/v1/websites/c1ecb30b-bd10-49c9-8eae-34471d9e3830/stats?startAt=${startAt}&endAt=${endAt}`
 const options = {
   method: "GET",
   headers: {
