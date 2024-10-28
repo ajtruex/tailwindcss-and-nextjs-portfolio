@@ -4,7 +4,8 @@ import Link from "next/link"
 import { projects } from "@/data/projects"
 import { BsGithub, BsArrowUpRightCircle } from "react-icons/bs"
 
-const ProjectPage = ({ params }: { params: { slug: string } }) => {
+const ProjectPage = async (props: { params: Promise<{ slug: string }> }) => {
+  const params = await props.params;
   // const router = useRouter()
   // Get the slug from the router query
 

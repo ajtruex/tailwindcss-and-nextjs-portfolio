@@ -1,10 +1,10 @@
-import { getTopArtists } from "../../lib/spotify"
+import { getTopArtists } from "@/lib/spotify"
 
 export const config = {
   runtime: "edge",
 }
 
-export default async function handler(req) {
+export async function GET(request: Request) {
   const resp = await getTopArtists()
 
   if (resp.status !== 200) {
@@ -17,7 +17,7 @@ export default async function handler(req) {
 
   const artists = response.topartists.artist
 
-  const topArtists = artists.map((artist) => {
+  const topArtists = artists.map((artist: any) => {
     return {
       name: artist.name,
       playcount: artist.playcount,
