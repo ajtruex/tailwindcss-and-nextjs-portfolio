@@ -42,7 +42,7 @@ export const HeroSection = () => {
         </div>
       </div>
       <div className="flex flex-col justify-center items-center mb-12">
-        <div className="flex flex-row w-2/3 justify-between">
+        <div className="flex flex-row md:w-2/3 gap-4 md:gap-0 justify-between">
           <div className="relative inline-block p-[2px] bg-gradient-to-r from-indigo-500  via-violet-700  to-fuchsia-500 rounded-md">
             <Link
               className={buttonVariants({ variant: "outline" })}
