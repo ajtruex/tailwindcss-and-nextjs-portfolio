@@ -9,7 +9,6 @@ import Script from "next/script"
 import type { Metadata } from "next"
 import { CSPostHogProvider } from "./providers"
 import CommandMenu from "@/components/CMD"
-import ClientComponent from "@/components/ClientComponent"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://andrewtruex.com"),
@@ -149,20 +148,18 @@ export default function RootLayout({
           sizes="180x180"
           href="/favicon-180-precomposed.png"
         /> */}
-        <ClientComponent>
-          <main>
-            <Provider>
-              <CSPostHogProvider>
-                <Navbar />
-                {children}
-                <CommandMenu open={undefined} setOpen={undefined} />
-                <SpeedInsights />
-                <Analytics />
-                <Footer />
-              </CSPostHogProvider>
-            </Provider>
-          </main>
-        </ClientComponent>
+        <main className="flex-col justify-center max-w-5xl lg:max-w-6xl px-5 py-8 mx-auto align-center xl:px-0">
+          <Provider>
+            <CSPostHogProvider>
+              <Navbar />
+              {children}
+              <CommandMenu open={undefined} setOpen={undefined} />
+              <SpeedInsights />
+              <Analytics />
+              <Footer />
+            </CSPostHogProvider>
+          </Provider>
+        </main>
       </body>
     </html>
   )
