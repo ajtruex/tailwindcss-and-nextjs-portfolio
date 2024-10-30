@@ -121,25 +121,44 @@ export default function Inspiration() {
       {/* Content Sections */}
       <div className="">
         {/* Video Grid */}
-        <section className="flex flex-col gap-4 p-4 space-y-12">
-          <div className="flex flex-row gap-6">
-            <Card className="w-full rounded-xl overflow-hidden border-2 border-primary/10 hover:border-primary/20 transition-colors -rotate-1">
-              <video controls className="rounded-xl w-full">
-                <source
-                  src="https://d34073qwlt06j3.cloudfront.net/bill.mp4"
-                  type="video/mp4"
-                />
+        <section className="flex flex-col gap-4 p-4 space-y-12 ">
+          <div className="flex flex-row space-x-12">
+            <Card className="w-1/2 relative z-50 rounded-xl transition-colors ">
+              <video controls className="rounded-xl ">
+                <source src="./seth-rogen-inspo.mp4" type="video/mp4" />
               </video>
+              <div className="absolute -inset-1 border-2 border-neutral-800/40 rounded-lg -z-10 translate-y-2 bg-zinc-900/40" />
+              <div className="absolute -inset-2 border-2 border-neutral-800/30 rounded-lg -z-20 translate-y-3 bg-zinc-900/30" />
+              <div className="absolute -inset-3 border-2 border-neutral-800/20 rounded-lg -z-30 translate-y-4 bg-zinc-900/20" />
             </Card>
-
-            <Card className="w-full rounded-xl  border-2 border-primary/10 hover:border-primary/20 transition-colors rotate-1">
-              <video controls className="rounded-xl aspect-auto h-">
-                <source
-                  src="https://res.cloudinary.com/ajtruex/video/upload/q_auto:best/v1696464400/rapisreligion2023-08-21__021616.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </Card>
+            <div className="flex flex-col justify-evenly md:space-y-24 space-y-4  sm:w-2/3">
+              <Card className="w-2/3 relative z-50 rounded-xl hover:border-primary/20 transition-colors rotate-1">
+                <video controls className="rounded-xl aspect-auto">
+                  <source
+                    src="https://res.cloudinary.com/ajtruex/video/upload/q_auto:best/v1696464400/rapisreligion2023-08-21__021616.mp4"
+                    type="video/mp4"
+                  />
+                </video>
+                <div className="absolute -inset-1 border-2 border-neutral-800/40 rounded-lg -z-10 translate-y-0.5 bg-gradient-to-r from-indigo-500/40    to-fuchsia-500/40 " />
+                <div className="absolute -inset-2 border-2 border-neutral-800/30 rounded-lg -z-20 translate-y-1 bg-gradient-to-r from-indigo-500/30    to-fuchsia-500/30 " />
+                <div className="absolute -inset-3 border-2 border-neutral-800/20 rounded-lg -z-30 translate-y-1.5 bg-gradient-to-r from-indigo-500/20    to-fuchsia-500/20" />
+              </Card>
+              <Card className="w-2/3 relative z-50 rounded-xl hover:border-primary/20 transition-colors -rotate-1 flex mb-12">
+                <video
+                  controls
+                  poster="https://d34073qwlt06j3.cloudfront.net/ChrisCole-NewBlood.webp"
+                  className="rounded-xl aspect-auto"
+                >
+                  <source
+                    src="https://d34073qwlt06j3.cloudfront.net/ChrisCole-NewBlood.mp4"
+                    type="video/mp4"
+                  />
+                </video>
+                <div className="absolute -inset-1 border-2 border-neutral-800/40 rounded-lg -z-10 translate-y-2 bg-zinc-900/40" />
+                <div className="absolute -inset-2 border-2 border-neutral-800/30 rounded-lg -z-20 translate-y-3 bg-zinc-900/30" />
+                <div className="absolute -inset-3 border-2 border-neutral-800/20 rounded-lg -z-30 translate-y-4 bg-zinc-900/20" />
+              </Card>
+            </div>
           </div>
           {/* Memento Mori Section */}
           <div className="flex flex-col">
@@ -151,21 +170,6 @@ export default function Inspiration() {
             </p>
           </div>
           <div className="flex flex-col space-y-6">
-            <Card className="relative z-50 rounded-xl hover:border-primary/20 transition-colors -rotate-1 flex mb-12">
-              <video
-                controls
-                poster="https://d34073qwlt06j3.cloudfront.net/ChrisCole-NewBlood.webp"
-                className="rounded-xl aspect-auto"
-              >
-                <source
-                  src="https://d34073qwlt06j3.cloudfront.net/ChrisCole-NewBlood.mp4"
-                  type="video/mp4"
-                />
-              </video>
-              <div className="absolute -inset-1 border-2 border-neutral-800/40 rounded-lg -z-10 translate-y-2 bg-zinc-900/40" />
-              <div className="absolute -inset-2 border-2 border-neutral-800/30 rounded-lg -z-20 translate-y-3 bg-zinc-900/30" />
-              <div className="absolute -inset-3 border-2 border-neutral-800/20 rounded-lg -z-30 translate-y-4 bg-zinc-900/20" />
-            </Card>
             <Card className="relative rounded-xl transition-colors z-50 bg-zinc-900	">
               <video
                 controls
