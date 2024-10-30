@@ -1,12 +1,40 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Play, Volume2, Music, Plus, ArrowRight } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { Play, Volume2, VolumeX, Plus, ArrowRight, Pause } from "lucide-react"
+import { Card } from "@/components/ui/card"
 
 export default function Inspiration() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  const [isMuted, setIsMuted] = useState(false)
+
+  const videoRef = useRef(null)
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause()
+      } else {
+        videoRef.current.play()
+      }
+      setIsPlaying(!isPlaying)
+    }
+  }
+
+  const volume = () => {
+    if (videoRef.current) {
+      if (isMuted) {
+        videoRef.current.muted = true
+      } else {
+        videoRef.current.muted = false
+      }
+      setIsMuted(!isMuted)
+    }
+  }
 
   useEffect(() => {
     setIsLoaded(true)
@@ -39,13 +67,31 @@ export default function Inspiration() {
         <div className="absolute inset-0 bg-neutral-900">
           <video
             className="absolute w-screen h-full object-cover"
-            src="https://d34073qwlt06j3.cloudfront.net/bill.mp4"
+            // src="https://d34073qwlt06j3.cloudfront.net/Mac-Miller-NPR-Music-Tiny-Desk-Concert.mp4"
+            ref={videoRef}
             autoPlay
             loop
             muted
-          />
+          >
+            <source
+              src="https://d34073qwlt06j3.cloudfront.net/Mac-Miller-NPR-Music-Tiny-Desk-Concert.mp4#t=15"
+              type="video/mp4"
+            />
+          </video>
+          <button
+            onClick={togglePlay}
+            className="absolute bottom-4 right-4 z-50 bg-black/50 hover:bg-black/75 text-white p-3 rounded-full transition-colors"
+          >
+            {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+          </button>
+          <button
+            onClick={volume}
+            className="absolute bottom-4 right-16 z-50 bg-black/50 hover:bg-black/75 text-white p-3 rounded-full transition-colors"
+          >
+            {isMuted ? <Volume2 size={24} /> : <VolumeX size={24} />}
+          </button>
           {/* Video Overlay */}
-          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-black/65 z-10" />
         </div>
 
         {/* Hero Content */}
@@ -57,14 +103,10 @@ export default function Inspiration() {
           }}
         >
           <div className="space-y-8 px-6">
-            <h1
-              className="text-7xl md:text-9xl font-light tracking-tight"
-              style={{ fontFamily: "Apple Garamond, serif" }}
-            >
+            <h1 className="text-7xl md:text-9xl font-normal font-garamond tracking-tight">
               <div className="overflow-hidden">
-                <span className="inline-block translate-y-full animate-slideUp">
-                  Insp
-                  <span className="opacity-50">iration</span>
+                <span className="inline-block translate-y-full animate-slideUp mb-6">
+                  Inspiration
                 </span>
               </div>
             </h1>
@@ -74,51 +116,71 @@ export default function Inspiration() {
             </p>
           </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 transition-all duration-300"
-          style={{ opacity: heroOpacity }}
-        >
-          <div className="w-px h-16 bg-white/20">
-            <div className="w-full h-1/2 bg-white/80 animate-scrollIndicator" />
-          </div>
-          <span className="text-sm text-neutral-400">Scroll to explore</span>
-        </div>
       </section>
 
       {/* Content Sections */}
-      <div className="relative z-10">
+      <div className="">
         {/* Video Grid */}
-        <section className="min-h-screen grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-black">
-          {[1, 2, 3].map((index) => (
-            <div key={index} className="group relative aspect-video">
-              <div className="absolute inset-0 bg-neutral-900 rounded-lg overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-0 bg-black/50" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Play className="w-12 h-12 transform scale-0 group-hover:scale-100 transition-transform duration-500" />
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -inset-px border border-neutral-800 rounded-lg -z-10 translate-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
-          ))}
-        </section>
+        <section className="flex flex-col gap-4 p-4 space-y-12">
+          <div className="flex flex-row gap-6">
+            <Card className="w-full rounded-xl overflow-hidden border-2 border-primary/10 hover:border-primary/20 transition-colors -rotate-1">
+              <video controls className="rounded-xl w-full">
+                <source
+                  src="https://d34073qwlt06j3.cloudfront.net/bill.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </Card>
 
-        {/* Memento Mori Section */}
-        <section className="min-h-screen flex items-center justify-center relative bg-black">
-          <div className="absolute inset-0 flex items-center justify-center opacity-5">
-            <div className="text-[20vw] font-bold tracking-tighter">MORI</div>
+            <Card className="w-full rounded-xl  border-2 border-primary/10 hover:border-primary/20 transition-colors rotate-1">
+              <video controls className="rounded-xl aspect-auto h-">
+                <source
+                  src="https://res.cloudinary.com/ajtruex/video/upload/q_auto:best/v1696464400/rapisreligion2023-08-21__021616.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </Card>
           </div>
-          <div className="relative z-10 text-center space-y-4">
-            <h2
-              className="text-5xl md:text-7xl font-light"
-              style={{ fontFamily: "Apple Garamond, serif" }}
-            >
+          {/* Memento Mori Section */}
+          <div className="flex flex-col">
+            <h1 className="text-5xl sm:text-8xl font-bold items-end text-end justify-end mt-6 sm:mt-6 tracking-tight font-seasons">
               Memento Mori
-            </h2>
-            <p className="text-neutral-400">remember that you have to die</p>
+            </h1>
+            <p className="text-xl sm:text-3xl text-gray-400 mr-4 sm:mr-[104px] items-end text-end justify-end tracking-tight font-seasons">
+              &quot;remember that you have to die&quot;
+            </p>
+          </div>
+          <div className="flex flex-col space-y-6">
+            <Card className="relative z-50 rounded-xl hover:border-primary/20 transition-colors -rotate-1 flex mb-12">
+              <video
+                controls
+                poster="https://d34073qwlt06j3.cloudfront.net/ChrisCole-NewBlood.webp"
+                className="rounded-xl aspect-auto"
+              >
+                <source
+                  src="https://d34073qwlt06j3.cloudfront.net/ChrisCole-NewBlood.mp4"
+                  type="video/mp4"
+                />
+              </video>
+              <div className="absolute -inset-1 border-2 border-neutral-800/40 rounded-lg -z-10 translate-y-2 bg-zinc-900/40" />
+              <div className="absolute -inset-2 border-2 border-neutral-800/30 rounded-lg -z-20 translate-y-3 bg-zinc-900/30" />
+              <div className="absolute -inset-3 border-2 border-neutral-800/20 rounded-lg -z-30 translate-y-4 bg-zinc-900/20" />
+            </Card>
+            <Card className="relative rounded-xl transition-colors z-50 bg-zinc-900	">
+              <video
+                controls
+                poster="https://d34073qwlt06j3.cloudfront.net/daft-punk-poster.webp"
+                className="rounded-xl aspect-auto"
+              >
+                <source
+                  src="https://d34073qwlt06j3.cloudfront.net/Daft_Punk-Alive_2007_Wireless_O2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+              <div className="absolute -inset-1 border-2 border-neutral-800/40 rounded-lg -z-10 translate-y-2 bg-zinc-900/40	" />
+              <div className="absolute -inset-2 border-2 border-neutral-800/30 rounded-lg -z-20 translate-y-3 bg-zinc-900/30	" />
+              <div className="absolute -inset-3 border-2 border-neutral-800/20 rounded-lg -z-30 translate-y-4 bg-zinc-900/20	" />
+            </Card>
           </div>
         </section>
       </div>
