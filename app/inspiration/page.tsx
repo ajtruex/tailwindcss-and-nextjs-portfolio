@@ -1,168 +1,152 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Play } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Play, Volume2, Music, Plus, ArrowRight } from "lucide-react"
 
-export default function Component() {
+export default function Inspiration() {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    setIsLoaded(true)
+
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("mousemove", handleMouseMove)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("mousemove", handleMouseMove)
+    }
+  }, [])
+
+  // Calculate opacity based on scroll position
+  const heroOpacity = Math.max(0, Math.min(1 - scrollY / 500, 1))
+
   return (
-    <div className="items-center mx-auto space-y-24">
-      <h1 className="text-5xl sm:text-9xl text-center mt-12 font-garamond">
-        Inspiration
-      </h1>
-      <div className="relative z-50">
-        <video
-          controls
-          poster="https://d34073qwlt06j3.cloudfront.net/kanye-poster.webp"
-          className="rounded-xl my-12 mb-20 sm:mb-0 "
-        >
-          <source
-            src="https://d34073qwlt06j3.cloudfront.net/KanyeWestPerformsStrongerAndHeyMama.mp4"
-            type="video/mp4"
+    <div className="mx-auto">
+      {/* Hero Section */}
+      <section className=" h-screen overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 bg-neutral-900">
+          <video
+            className="absolute w-screen h-full object-cover"
+            src="https://d34073qwlt06j3.cloudfront.net/bill.mp4"
+            autoPlay
+            loop
+            muted
           />
-        </video>
-        <div className="absolute -inset-1 border-2 border-neutral-800/40 rounded-lg -z-10 translate-y-2 bg-zinc-700/40	" />
-        <div className="absolute -inset-2 border-2 border-neutral-800/30 rounded-lg -z-20 translate-y-3 bg-zinc-700/30	" />
-        <div className="absolute -inset-3 border-2 border-neutral-800/20 rounded-lg -z-30 translate-y-4 bg-zinc-700/20	" />
+          {/* Video Overlay */}
+          <div className="absolute inset-0 bg-black/40 z-10" />
+        </div>
+
+        {/* Hero Content */}
+        <div
+          className="relative z-20 h-full flex flex-col justify-center items-center text-center transition-all duration-300"
+          style={{
+            opacity: heroOpacity,
+            transform: `translateY(${scrollY * 0.5}px)`,
+          }}
+        >
+          <div className="space-y-8 px-6">
+            <h1
+              className="text-7xl md:text-9xl font-light tracking-tight"
+              style={{ fontFamily: "Apple Garamond, serif" }}
+            >
+              <div className="overflow-hidden">
+                <span className="inline-block translate-y-full animate-slideUp">
+                  Insp
+                  <span className="opacity-50">iration</span>
+                </span>
+              </div>
+            </h1>
+            <p className="max-w-md mx-auto text-lg text-neutral-200">
+              A curated collection of moments that inspire creativity and push
+              boundaries
+            </p>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 transition-all duration-300"
+          style={{ opacity: heroOpacity }}
+        >
+          <div className="w-px h-16 bg-white/20">
+            <div className="w-full h-1/2 bg-white/80 animate-scrollIndicator" />
+          </div>
+          <span className="text-sm text-neutral-400">Scroll to explore</span>
+        </div>
+      </section>
+
+      {/* Content Sections */}
+      <div className="relative z-10">
+        {/* Video Grid */}
+        <section className="min-h-screen grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-black">
+          {[1, 2, 3].map((index) => (
+            <div key={index} className="group relative aspect-video">
+              <div className="absolute inset-0 bg-neutral-900 rounded-lg overflow-hidden">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 bg-black/50" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Play className="w-12 h-12 transform scale-0 group-hover:scale-100 transition-transform duration-500" />
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -inset-px border border-neutral-800 rounded-lg -z-10 translate-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+          ))}
+        </section>
+
+        {/* Memento Mori Section */}
+        <section className="min-h-screen flex items-center justify-center relative bg-black">
+          <div className="absolute inset-0 flex items-center justify-center opacity-5">
+            <div className="text-[20vw] font-bold tracking-tighter">MORI</div>
+          </div>
+          <div className="relative z-10 text-center space-y-4">
+            <h2
+              className="text-5xl md:text-7xl font-light"
+              style={{ fontFamily: "Apple Garamond, serif" }}
+            >
+              Memento Mori
+            </h2>
+            <p className="text-neutral-400">remember that you have to die</p>
+          </div>
+        </section>
       </div>
 
-      <div className="relative z-50">
-        <video
-          controls
-          poster="https://d34073qwlt06j3.cloudfront.net/mac-miller-npr-poster-rounded.webp"
-          className="rounded-xl my-12 mb-20 sm:mb-0"
-        >
-          <source
-            src="https://d34073qwlt06j3.cloudfront.net/Mac-Miller-NPR-Music-Tiny-Desk-Concert.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div className="absolute -inset-1 border-2 border-violet-500/40 rounded-lg -z-10 translate-y-2 	" />
-        <div className="absolute -inset-2 border-2 border-violet-500/30 rounded-lg -z-20 translate-y-4 	" />
-        <div className="absolute -inset-3 border-2 border-violet-500/20 rounded-lg -z-30 translate-y-6 	" />
-      </div>
-
-      <video
-        controls
-        poster="https://d34073qwlt06j3.cloudfront.net/mac-miller-npr-poster-rounded.webp"
-        className="rounded-xl my-12 mb-20 sm:mb-0"
-      >
-        <source
-          src="https://d34073qwlt06j3.cloudfront.net/Mac-Miller-NPR-Music-Tiny-Desk-Concert.mp4"
-          type="video/mp4"
-        />
-      </video>
+      <style jsx global>{`
+        @keyframes scrollIndicator {
+          0% {
+            transform: translateY(0);
+          }
+          100% {
+            transform: translateY(100%);
+          }
+        }
+        .animate-scrollIndicator {
+          animation: scrollIndicator 2s ease-in-out infinite;
+        }
+        @keyframes slideUp {
+          0% {
+            transform: translateY(100%);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+        .animate-slideUp {
+          animation: slideUp 1s ease-out forwards;
+        }
+      `}</style>
     </div>
   )
 }
-// return (
-//   // <div className="min-h-screen bg-neutral-900 ">
-//   <div className="container px-4 py-12 mx-auto">
-//     <h1 className="text-5xl font-garamond text-center mb-16 text-white">
-//       Inspiration
-//     </h1>
-
-//     {/* Asymmetric grid with overlapping elements */}
-//     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
-//       {/* Featured video - spans 2 columns */}
-//       <Card className="relative z-50 md:col-span-2 rounded-xl hover:border-primary/20 transition-colors">
-//         <video
-//           controls
-//           poster="https://d34073qwlt06j3.cloudfront.net/kanye-poster.webp"
-//           className="rounded-xl"
-//         >
-//           <source
-//             src="https://d34073qwlt06j3.cloudfront.net/KanyeWestPerformsStrongerAndHeyMama.mp4"
-//             type="video/mp4"
-//           />
-//         </video>
-//         <div className="absolute -inset-1 border-2 border-neutral-800/40 rounded-lg -z-10 translate-y-2 bg-zinc-900/40	" />
-//         <div className="absolute -inset-2 border-2 border-neutral-800/30 rounded-lg -z-20 translate-y-3 bg-zinc-900/30	" />
-//         <div className="absolute -inset-3 border-2 border-neutral-800/20 rounded-lg -z-30 translate-y-4 bg-zinc-900/20	" />
-//       </Card>
-
-//       {/* NPR Music video with decorative element */}
-//       <Card className="relative z-50 rounded-xl hover:border-primary/20 transition-colors">
-//         <video
-//           controls
-//           poster="https://d34073qwlt06j3.cloudfront.net/mac-miller-npr-poster-rounded.webp"
-//           className="rounded-xl"
-//         >
-//           <source
-//             src="https://d34073qwlt06j3.cloudfront.net/Mac-Miller-NPR-Music-Tiny-Desk-Concert.mp4"
-//             type="video/mp4"
-//           />
-//         </video>
-//         <div className="absolute -inset-1 border-2 border-neutral-800/40 rounded-lg -z-10 translate-y-2 bg-zinc-900/40	" />
-//         <div className="absolute -inset-2 border-2 border-neutral-800/30 rounded-lg -z-20 translate-y-3 bg-zinc-900/30	" />
-//         <div className="absolute -inset-3 border-2 border-neutral-800/20 rounded-lg -z-30 translate-y-4 bg-zinc-900/20	" />
-//       </Card>
-
-//       {/* Memento Mori section */}
-//       <div className="md:col-span-2 space-y-6 mb-12">
-//         <h1 className="text-5xl sm:text-8xl font-bold items-end text-end justify-end mt-6 sm:mt-12 tracking-tight font-seasons">
-//           Memento Mori
-//         </h1>
-//         <p className="text-xl sm:text-3xl text-gray-400 mr-4 sm:mr-[104px] items-end text-end justify-end tracking-tight font-seasons">
-//           &quot;remember that you have to die&quot;
-//         </p>
-
-//         {/* Overlapping video grid */}
-//         <div className="grid grid-cols-2 gap-6">
-//           <Card className="col-span-2 md:col-span-1 rounded-xl overflow-hidden border-2 border-primary/10 hover:border-primary/20 transition-colors -rotate-1">
-//             <video controls className="rounded-xl">
-//               <source
-//                 src="https://d34073qwlt06j3.cloudfront.net/bill.mp4"
-//                 type="video/mp4"
-//               />
-//             </video>
-//           </Card>
-
-//           <Card className="rounded-xl overflow-hidden border-2 border-primary/10 hover:border-primary/20 transition-colors rotate-1">
-//             <video controls className="rounded-xl">
-//               <source
-//                 src="https://res.cloudinary.com/ajtruex/video/upload/q_auto:best/v1696464400/rapisreligion2023-08-21__021616.mp4"
-//                 type="video/mp4"
-//               />
-//             </video>
-//           </Card>
-
-//           <Card className="relative z-50 rounded-xl  hover:border-primary/20 transition-colors -rotate-1">
-//             <video
-//               controls
-//               poster="https://d34073qwlt06j3.cloudfront.net/ChrisCole-NewBlood.webp"
-//               className="rounded-xl"
-//             >
-//               <source
-//                 src="https://d34073qwlt06j3.cloudfront.net/ChrisCole-NewBlood.mp4"
-//                 type="video/mp4"
-//               />
-//             </video>
-//             <div className="absolute -inset-1 border-2 border-neutral-800/40 rounded-lg -z-10 translate-y-2 bg-zinc-900/40	" />
-//             <div className="absolute -inset-2 border-2 border-neutral-800/30 rounded-lg -z-20 translate-y-3 bg-zinc-900/30	" />
-//             <div className="absolute -inset-3 border-2 border-neutral-800/20 rounded-lg -z-30 translate-y-4 bg-zinc-900/20	" />
-//           </Card>
-//         </div>
-//       </div>
-
-//       {/* Full-width bottom video */}
-//       <Card className="relative col-span-full rounded-xl transition-colors z-50 bg-zinc-900	">
-//         <video
-//           controls
-//           poster="https://d34073qwlt06j3.cloudfront.net/daft-punk-poster.webp"
-//           className="rounded-xl "
-//         >
-//           <source
-//             src="https://d34073qwlt06j3.cloudfront.net/Daft_Punk-Alive_2007_Wireless_O2.mp4"
-//             type="video/mp4"
-//           />
-//         </video>
-//         <div className="absolute -inset-1 border-2 border-neutral-800/40 rounded-lg -z-10 translate-y-2 bg-zinc-900/40	" />
-//         <div className="absolute -inset-2 border-2 border-neutral-800/30 rounded-lg -z-20 translate-y-3 bg-zinc-900/30	" />
-//         <div className="absolute -inset-3 border-2 border-neutral-800/20 rounded-lg -z-30 translate-y-4 bg-zinc-900/20	" />
-//       </Card>
-//     </div>
-//   </div>
-//   // </div>
-// )
-// }
