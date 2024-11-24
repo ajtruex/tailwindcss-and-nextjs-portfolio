@@ -1,9 +1,13 @@
+"use client"
+import { VideoHero } from "@/components/VideoHero"
+
 export default function Inspiration() {
   return (
     <div className="items-center mx-auto ">
-      <h1 className="text-5xl sm:text-9xl text-center mt-12 font-garamond">
+      <VideoHero />
+      {/* <h1 className="text-5xl sm:text-9xl text-center mt-12 font-garamond">
         Inspiration
-      </h1>
+      </h1> */}
       <video
         controls
         poster="https://d34073qwlt06j3.cloudfront.net/kanye-poster.webp"
@@ -14,7 +18,16 @@ export default function Inspiration() {
           type="video/mp4"
         />
       </video>
-
+      {/* <video
+        controls
+        poster="https://d34073qwlt06j3.cloudfront.net/mac-miller-npr-poster-rounded.webp"
+        className="rounded-xl my-12 mb-20 sm:mb-0"
+      >
+        <source
+          src="https://d34073qwlt06j3.cloudfront.net/Mac-Miller-NPR-Music-Tiny-Desk-Concert.mp4"
+          type="video/mp4"
+        />
+      </video> */}
       {/* <video
         controls
         poster="/kanye-poster.png"
