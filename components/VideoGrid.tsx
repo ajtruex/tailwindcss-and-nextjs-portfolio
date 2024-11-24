@@ -16,8 +16,8 @@ export function VideoGrid() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [isMuted, setIsMuted] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [isMuted, setIsMuted] = useState(true)
   const [expandedVideo, setExpandedVideo] = useState(null)
 
   const videoRef = useRef(null)
@@ -107,7 +107,7 @@ export function VideoGrid() {
             onClick={volume}
             className="absolute bottom-4 right-16 z-50 bg-black/50 hover:bg-black/75 text-white p-3 rounded-full transition-colors"
           >
-            {isMuted ? <Volume2 size={24} /> : <VolumeX size={24} />}
+            {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
           </button>
           {/* Video Overlay */}
           <div className="absolute inset-0 bg-black/65 z-10" />
@@ -252,53 +252,6 @@ export function VideoGrid() {
           </div>
         </div>
       )}
-
-      <style jsx global>{`
-        @keyframes scrollIndicator {
-          0% {
-            transform: translateY(0);
-          }
-          100% {
-            transform: translateY(100%);
-          }
-        }
-        .animate-scrollIndicator {
-          animation: scrollIndicator 2s ease-in-out infinite;
-        }
-        @keyframes slideUp {
-          0% {
-            transform: translateY(100%);
-          }
-          100% {
-            transform: translateY(0);
-          }
-        }
-        .animate-slideUp {
-          animation: slideUp 1s ease-out forwards;
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        @keyframes scaleIn {
-          from {
-            transform: scale(0.9);
-          }
-          to {
-            transform: scale(1);
-          }
-        }
-        .fixed {
-          animation: fadeIn 0.3s ease-out;
-        }
-        .fixed > div {
-          animation: scaleIn 0.3s ease-out;
-        }
-      `}</style>
     </div>
   )
 }

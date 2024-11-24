@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Play, Volume2, VolumeX, Plus, ArrowRight, Pause } from "lucide-react"
 import { Card } from "@/components/ui/card"
-import { VideoGrid } from "@/components/video-grid"
+import { VideoGrid } from "@/components/VideoGrid"
 
 export default function Inspiration() {
   return (
