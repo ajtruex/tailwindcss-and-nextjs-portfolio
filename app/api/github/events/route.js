@@ -36,7 +36,7 @@ export async function GET(request) {
       },
     }))
 
-    console.log(formattedEvents)
+    // console.log(formattedEvents)
 
     return new Response(JSON.stringify(formattedEvents), {
       status: 200,
