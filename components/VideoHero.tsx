@@ -128,8 +128,7 @@ export function VideoHero() {
               </div>
             </h1>
             <p className="max-w-md mx-auto text-lg text-neutral-200">
-              A curated collection of moments that inspire creativity and push
-              boundaries
+              A curated collection of moments that inspire me
             </p>
           </div>
         </div>
