@@ -1,8 +1,6 @@
 "use client"
-import useSWR from "swr"
-import fetcher from "@/lib/fetcher"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FiChevronDown } from "react-icons/fi"
 
 export type TopArtistsResponse = {
@@ -14,14 +12,62 @@ export type TopArtistsResponse = {
 export default function TopArtists() {
   const [to, setTo] = useState("Month")
   const [isOpen, setIsOpen] = useState(false)
-  const { data } = useSWR<TopArtistsResponse[]>(
-    "/api/spotify/top-artists",
-    fetcher
-  )
-  const { data: year } = useSWR<TopArtistsResponse[]>(
-    "/api/spotify/top-artists-year",
-    fetcher
-  )
+  const [monthlyArtists, setMonthlyArtists] = useState<TopArtistsResponse[]>([])
+  const [yearlyArtists, setYearlyArtists] = useState<TopArtistsResponse[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchArtists = async () => {
+      try {
+        setIsLoading(true)
+        const [monthlyResponse, yearlyResponse] = await Promise.all([
+          fetch("/api/spotify/top-artists", { cache: "no-store" }),
+          fetch("/api/spotify/top-artists-year", { cache: "no-store" }),
+        ])
+
+        if (!monthlyResponse.ok || !yearlyResponse.ok) {
+          throw new Error("Failed to fetch artists")
+        }
+        const monthlyData = await monthlyResponse.json()
+        const yearlyData = await yearlyResponse.json()
+
+        setMonthlyArtists(monthlyData)
+        setYearlyArtists(yearlyData)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred")
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchArtists()
+  }, [])
+
+  // const { data } = useSWR<TopArtistsResponse[]>(
+  //   "/api/spotify/top-artists",
+  //   fetcher
+  // )
+  // const { data: year } = useSWR<TopArtistsResponse[]>(
+  //   "/api/spotify/top-artists-year",
+  //   fetcher
+  // )
+
+  if (error) return <div>Error loading artists: {error}</div>
+  if (isLoading)
+    return (
+      <div className="flex space-x-0 md:space-x-4  flex-col md:space-y-0 space-y-4 justify-center items-center">
+        <div className="dark:bg-gradient-to-r dark:from-neutral-900 dark:to-zinc-800 bg-gradient-to-r from-neutral-200 to-zinc-200 rounded-lg shadow-xl p-4 flex flex-col justify-between gap-2 md:w-1/2 w-full">
+          {/* <div className="flex flex-col items-center justify-center"> */}
+          <h2 className="m-0 dark:text-zinc-200 text-zinc-900 font-black text-xl">
+            Top Artists
+          </h2>
+          <div className="flex animate-spin rounded-full h-8 w-8 border-b-2 border-zinc-500 mx-auto" />
+          {/* </div> */}
+        </div>
+      </div>
+    )
+
+  const artists = to === "Month" ? monthlyArtists : yearlyArtists
 
   return (
     <div className="flex space-x-0 md:space-x-4 md:flex-row flex-col md:space-y-0 space-y-4 justify-center items-center">
@@ -70,7 +116,7 @@ export default function TopArtists() {
           </div>
           {to === "Month" ? (
             <div className="flex flex-col ">
-              {data?.map((artist, index) => (
+              {monthlyArtists?.map((artist, index) => (
                 <Link
                   href={artist.url}
                   key={index}
@@ -91,7 +137,7 @@ export default function TopArtists() {
             </div>
           ) : (
             <div className="flex flex-col ">
-              {year?.map((artist, index) => (
+              {yearlyArtists?.map((artist, index) => (
                 <Link
                   href={artist.url}
                   key={index}
