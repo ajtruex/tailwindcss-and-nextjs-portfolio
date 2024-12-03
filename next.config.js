@@ -47,6 +47,18 @@ const nextConfig = {
         port: "",
         pathname: "/u/**",
       },
+      {
+        protocol: "https",
+        hostname: "d34073qwlt06j3.cloudfront.net",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.beta.cosmos.so",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   typescript: {

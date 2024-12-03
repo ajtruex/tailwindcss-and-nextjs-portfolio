@@ -55,6 +55,30 @@ const gtsuperdisplay = localFont({
   variable: "--font-gtsuperdisplay",
 })
 
+const neuemachina = localFont({
+  src: [
+    {
+      // path: "@/fonts/NeueMachina-Regular.otf",
+      path: "../../fonts/NeueMachina-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../fonts/NeueMachina-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../fonts/NeueMachina-Ultrabold.otf",
+      weight: "800",
+      style: "normal",
+    },
+  ],
+
+  display: "swap",
+  variable: "--font-neuemachina",
+})
+
 export const metadata = {
   title: "Inspiration",
   icons: {
@@ -70,7 +94,7 @@ export default function InspoLayout({
   return (
     <section
       className={`${seasons.variable} ${garamond.variable}
-      ${gtsuperdisplay.variable}`}
+      ${gtsuperdisplay.variable} ${neuemachina.variable} antialiased`}
     >
       {children}
     </section>

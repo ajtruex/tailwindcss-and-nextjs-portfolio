@@ -1,6 +1,6 @@
 import localFont from "next/font/local"
 
-const local = localFont({
+const neuemachina = localFont({
   src: [
     {
       // path: "@/fonts/NeueMachina-Regular.otf",
@@ -21,6 +21,7 @@ const local = localFont({
   ],
 
   display: "swap",
+  variable: "--font-neuemachina",
 })
 
 export const metadata = {
@@ -37,7 +38,9 @@ export default function InspirationLayout({
 }) {
   return (
     <main className=" flex justify-center items-center mx-auto">
-      <section className={`${local.className} antialiased`}>{children}</section>
+      <section className={`${neuemachina.variable} antialiased`}>
+        {children}
+      </section>
     </main>
   )
 }

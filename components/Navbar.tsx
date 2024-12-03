@@ -104,6 +104,7 @@ const Navbar = () => {
           navbar ? "block" : "hidden z-[100]"
         } md:block`}
       >
+        <div className="absolute -z-10 -inset-1 bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
         <div className="flex-1 justify-self-center pb-3 mt-2 md:block md:pb-0 md:mt-0">
           <div className="items-center justify-center space-y-4 md:flex xl:space-x-6 lg:space-x-5 md:max-lg:space-x-4 md:space-y-0">
             {NAV_ITEMS.map((item, idx) => {
@@ -190,7 +191,7 @@ const Navbar = () => {
                 <RiLoader4Line
                   size={25}
                   color="black"
-                  className="animate-pulse"
+                  className="animate-spin"
                 />
               </div>
             )}

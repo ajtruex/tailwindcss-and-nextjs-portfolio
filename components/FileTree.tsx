@@ -12,6 +12,7 @@ import {
   Camera,
   FileText,
 } from "lucide-react"
+import Image from "next/image"
 
 // type FileType = {
 //   name: string
@@ -24,30 +25,68 @@ import {
 const files = [
   {
     name: "VIDEO",
-    dateadded: "08.23.2024 10:35PM",
-    size: "1GB",
+    dateadded: "10.10.2023 08:08PM",
+    size: "2.53GB",
     kind: "FOLDER",
     children: [
       {
         name: "KANYE WEST - GRAMMYS Hey mama.MP4",
-        dateadded: "08.23.2024 10:35PM",
-        size: "1GB",
+        dateadded: "10.10.2023 08:08PM",
+        size: "354.8MB",
         kind: "VIDEO",
         url: "https://d34073qwlt06j3.cloudfront.net/KanyeWestPerformsStrongerAndHeyMama.mp4",
       },
       {
         name: "DAFT PUNK - ALIVE 2007 WIRELESS 02.MP4",
-        dateadded: "08.23.2024 10:35PM",
-        size: "1GB",
+        dateadded: "07.03.2024 09:37PM",
+        size: "1.8GB",
         kind: "VIDEO",
         url: "https://d34073qwlt06j3.cloudfront.net/Daft_Punk-Alive_2007_Wireless_O2.mp4",
       },
       {
-        name: "KANYE RAPPING TO HIS MOM.MP4",
-        dateadded: "08.28.2024 8:35PM",
-        size: "16MB",
+        name: "MAC MILLER - NPR Tiny Desk Concert.MP4",
+        dateadded: "10.29.2024 07:24PM",
+        size: "375.7MB",
         kind: "VIDEO",
-        url: "https://res.cloudinary.com/ajtruex/video/upload/q_auto:best/v1696464400/rapisreligion2023-08-21__021616.mp4",
+        url: "https://d34073qwlt06j3.cloudfront.net/Mac-Miller-NPR-Music-Tiny-Desk-Concert.mp4",
+      },
+      {
+        name: "CHRIS COLE - NEW BLOOD.MP4",
+        dateadded: "10.10.2023 08:29PM",
+        size: "754.7MB",
+        kind: "VIDEO",
+        url: "https://d34073qwlt06j3.cloudfront.net/ChrisCole-NewBlood.mp4",
+      },
+    ],
+  },
+  {
+    name: "AUDIO",
+    dateadded: "10.10.2023 08:08PM",
+    size: "354.8MB",
+    kind: "FOLDER",
+    children: [
+      {
+        name: "KANYE WEST - GRAMMYS Hey mama.MP3",
+        dateadded: "10.10.2023 08:08PM",
+        size: "354.8MB",
+        kind: "AUDIO",
+        url: "https://d34073qwlt06j3.cloudfront.net/KanyeWestPerformsStrongerAndHeyMama.mp3",
+      },
+    ],
+  },
+
+  {
+    name: "IMAGE",
+    dateadded: "12.02.2024 06:52PM",
+    size: "274.62KB",
+    kind: "FOLDER",
+    children: [
+      {
+        name: "VCR_WireframeHand.jpg",
+        dateadded: "12.02.2024 06:52PM",
+        size: "274.62KB",
+        kind: "IMAGE",
+        url: "https://images.beta.cosmos.so/801ed0ac-1770-4893-954a-f5f22c9496ef.?format=jpeg",
       },
     ],
   },
@@ -76,37 +115,55 @@ const MediaWindow = ({ file, onClose }) => {
       onClose(file)
     }
   })
-
+  const [isVideoOpen, setIsVideoOpen] = useState(false)
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
+      exit={{ opacity: 0 }}
+      onClick={() => onClose(file)}
       className="fixed inset-0 flex items-center justify-center z-50"
     >
       <div className="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-4xl">
         <div className="flex justify-between items-center mb-4 ">
-          <h2 className="text-xl font-semibold">{file.name}</h2>
+          <h2 className="text-xl font-semibold uppercase">{file.name}</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-white">
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="bg-black rounded-lg aspect-video flex items-center justify-center">
+        <div className="bg-black rounded-2xl aspect-video flex items-center justify-center">
           {file.kind === "AUDIO" ? (
             <audio controls className="w-full">
               <source src={`/placeholder.mp3`} type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
+          ) : file.kind === "IMAGE" ? (
+            <div className="size-full overflow-hidden isolate z-[1] relative rounded-xl hover:border-zinc-900/20 transition-colors cursor-pointer dark:hover:border-zinc-50/20 outline outline-1 outline-[#ffffff24] outline-offset-[8px]">
+              <Image
+                src={file.url}
+                alt={file.name}
+                fill
+                className="object-cover rounded-2xl"
+              />
+            </div>
           ) : (
-            <video controls className="rounded-xl" autoPlay>
-              <source src={file.url} type="video/mp4" />
-            </video>
+            <div className="size-full  overflow-hidden isolate z-[1] relative rounded-xl hover:border-zinc-900/20 transition-colors cursor-pointer dark:hover:border-zinc-50/20 outline outline-1 outline-[#ffffff24] outline-offset-[8px] ">
+              <iframe
+                src={file.url}
+                className="size-full rounded-2xl"
+                allowFullScreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              ></iframe>
+            </div>
+            // <video controls className="rounded-xl" autoPlay>
+            //   <source src={file.url} type="video/mp4" />
+            // </video>
           )}
         </div>
-        <div className="mt-4 text-sm text-gray-400 opacity-75">
-          <p>Date Added: {file.dateadded}</p>
-          <p>Size: {file.size}</p>
-          <p>kind: {file.kind}</p>
+        <div className="mt-4 text-sm text-white opacity-90 font-extrabold">
+          <p>DATE ADDED: {file.dateadded}</p>
+          <p>SIZE: {file.size}</p>
+          <p>KIND: {file.kind}</p>
         </div>
       </div>
     </motion.div>
@@ -147,7 +204,7 @@ const FileTreeItem = ({ file, onSelect, depth = 0 }) => {
           className={
             file.kind === "FOLDER"
               ? "font-bold ml-5  text-center mx-2 text-base col-start-2 col-span-2"
-              : "ml-2 text-ellipsis truncate  text-sm col-start-2 col-span-2"
+              : "ml-2 text-ellipsis truncate  text-sm col-start-2 col-span-2 uppercase"
           }
           // className="ml-1 text-ellipsis truncate  w-[225px] text-center mx-2 text-xs col-start-2 "
         >
@@ -230,6 +287,40 @@ export default function FileTree() {
           </>
         )}
       </AnimatePresence>
+      {/* <AnimatePresence>
+        {selectedFile && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            onClick={() => setSelectedFile(false)}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-md"
+          >
+            <motion.div
+              // {...selectedAnimation}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="relative w-full max-w-4xl aspect-video mx-4 md:mx-0"
+            >
+              <motion.button className="absolute -top-16 right-0 text-white text-xl bg-neutral-900/50 ring-1 backdrop-blur-md rounded-full p-2 dark:bg-neutral-100/50 dark:text-black">
+                <X className="size-5" />
+              </motion.button>
+              <div className="size-full border-2 border-white rounded-2xl overflow-hidden isolate z-[1] relative">
+                <iframe
+                  src={selectedFile.url}
+                  className="size-full rounded-2xl"
+                  allowFullScreen
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                ></iframe>
+              </div>
+            </motion.div>
+            <div className="mt-4 text-sm text-gray-400 opacity-75">
+              <p>Date Added: {selectedFile.dateadded}</p>
+              <p>Size: {selectedFile.size}</p>
+              <p>kind: {selectedFile.kind}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence> */}
     </div>
   )
 }
