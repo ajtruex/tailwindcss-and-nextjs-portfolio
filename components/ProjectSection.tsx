@@ -51,9 +51,14 @@ const ProjectSection = () => {
                       <Image
                         src={project.image}
                         alt=""
-                        width={1000}
-                        height={1000}
-                        className="rounded-xl shadow-xl hover:opacity-70"
+                        quality={100}
+                        sizes="100vw"
+                        style={{
+                          aspectRatio: "16/9",
+                        }}
+                        width={1600}
+                        height={900}
+                        className="rounded-xl shadow-xl hover:opacity-70 object-cover object-left-top"
                       />
                     </Link>
                   </div>
