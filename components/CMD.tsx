@@ -10,6 +10,7 @@ import {
   User,
   Zap,
   Lightbulb,
+  Activity,
 } from "lucide-react"
 
 import {
@@ -137,6 +138,15 @@ export default function CommandMenu({ open, setOpen }) {
             >
               <Lightbulb className="mr-2" />
               <span>Inspiration</span>
+            </CommandItem>
+            <CommandItem
+              onSelect={(value) => {
+                window.open(value, "_self")
+              }}
+              className="hover:cursor-pointer"
+            >
+              <Activity className="mr-2" />
+              <span>Now</span>
             </CommandItem>
           </CommandGroup>
         </CommandList>
