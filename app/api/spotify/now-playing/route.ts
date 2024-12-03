@@ -1,5 +1,7 @@
 import { getNpOrRpSong } from "@/lib/spotify"
 
+export const dynamic = "force-dynamic"
+
 export async function GET(request: Request) {
   const resp = await getNpOrRpSong()
 
