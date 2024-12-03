@@ -120,7 +120,7 @@ export default function NowPlaying() {
         </div>
       </div>
 
-      <div className="isolate mx-auto flex relative h-auto w-fit items-center justify-center overflow-hidden rounded-xl border-2 border-[#00ffcc] bg-gradient-to-br from-[rgba(255,175,189,0.8)] to-[rgba(100,216,255,0.8)] p-4 bg-blend-screen shadow-[0_0_20px_#00ffcc,_inset_0_0_10px_rgba(255,255,255,0.05)] transition-all duration-500 hover:scale-110 hover:shadow-[0_0_35px_#00ffcc,_inset_0_0_15px_rgba(255,255,255,0.1)]">
+      <div className="fixed bottom-4 left-4 flex flex-col items-start mx-auto  h-auto w-fit justify-center overflow-hidden rounded-xl border-2 border-[#00ffcc] bg-gradient-to-br from-[rgba(255,175,189,0.8)] to-[rgba(100,216,255,0.8)] p-4 bg-blend-screen shadow-[0_0_20px_#00ffcc,_inset_0_0_10px_rgba(255,255,255,0.05)] transition-all duration-500 hover:scale-110 hover:shadow-[0_0_35px_#00ffcc,_inset_0_0_15px_rgba(255,255,255,0.1)]">
         {/* <!-- Noisy Overlay --> */}
         <div className="pointer-events-none absolute inset-0 mx-auto h-auto w-auto items-center justify-center rounded-xl bg-[url('https://www.transparenttextures.com/patterns/noisy-net.png')] opacity-75"></div>
 

@@ -1,5 +1,4 @@
 import { getTopTracksYear } from "@/lib/spotify"
-export const runtime = "edge"
 
 export async function GET(request: Request) {
   const resp = await getTopTracksYear()
