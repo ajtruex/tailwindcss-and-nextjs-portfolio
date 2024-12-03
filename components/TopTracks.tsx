@@ -1,8 +1,6 @@
 "use client"
-import fetcher from "@/lib/fetcher"
-import useSWR from "swr"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FiChevronDown } from "react-icons/fi"
 
 export type TopTracksResponse = {
@@ -15,14 +13,62 @@ export type TopTracksResponse = {
 export default function TopTracks() {
   const [to, setTo] = useState("Month")
   const [isOpen, setIsOpen] = useState(false)
-  const { data } = useSWR<TopTracksResponse[]>(
-    "/api/spotify/top-tracks",
-    fetcher
-  )
-  const { data: year } = useSWR<TopTracksResponse[]>(
-    "/api/spotify/top-tracks-year",
-    fetcher
-  )
+  const [monthlyTracks, setMonthlyTracks] = useState<TopTracksResponse[]>([])
+  const [yearlyTracks, setYearlyTracks] = useState<TopTracksResponse[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchTracks = async () => {
+      try {
+        setIsLoading(true)
+        const [monthlyResponse, yearlyResponse] = await Promise.all([
+          fetch("/api/spotify/top-tracks", { cache: "no-store" }),
+          fetch("/api/spotify/top-tracks-year", { cache: "no-store" }),
+        ])
+
+        if (!monthlyResponse.ok || !yearlyResponse.ok) {
+          throw new Error("Failed to fetch tracks")
+        }
+        const monthlyData = await monthlyResponse.json()
+        const yearlyData = await yearlyResponse.json()
+
+        setMonthlyTracks(monthlyData)
+        setYearlyTracks(yearlyData)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred")
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchTracks()
+  }, [])
+
+  // const { data } = useSWR<TopTracksResponse[]>(
+  //   "/api/spotify/top-tracks",
+  //   fetcher
+  // )
+  // const { data: year } = useSWR<TopTracksResponse[]>(
+  //   "/api/spotify/top-tracks-year",
+  //   fetcher
+  // )
+
+  if (error) return <div>Error loading tracks: {error}</div>
+  if (isLoading)
+    return (
+      <div className="flex space-x-0 md:space-x-4  flex-col md:space-y-0 space-y-4 justify-center items-center">
+        <div className="dark:bg-gradient-to-r dark:from-neutral-900 dark:to-zinc-800 bg-gradient-to-r from-neutral-200 to-zinc-200 rounded-lg shadow-xl p-4 flex flex-col justify-between gap-2 md:w-1/2 w-full">
+          {/* <div className="flex flex-col items-center justify-center"> */}
+          <h2 className="m-0 dark:text-zinc-200 text-zinc-900 font-black text-xl">
+            Top Tracks
+          </h2>
+          <div className="flex animate-spin rounded-full h-8 w-8 border-b-2 border-zinc-500 mx-auto" />
+          {/* </div> */}
+        </div>
+      </div>
+    )
+
+  const tracks = to === "Month" ? monthlyTracks : yearlyTracks
 
   return (
     <div className="flex space-x-0 md:space-x-4 md:flex-row flex-col md:space-y-0 space-y-4 justify-center items-center">
@@ -71,7 +117,7 @@ export default function TopTracks() {
           </div>
           {to === "Month" ? (
             <div className="flex flex-col">
-              {data?.map((track, index) => (
+              {monthlyTracks?.map((track, index) => (
                 <Link
                   href={track.url}
                   key={index}
@@ -93,7 +139,7 @@ export default function TopTracks() {
             </div>
           ) : (
             <div className="flex flex-col ">
-              {year?.map((track, index) => (
+              {yearlyTracks?.map((track, index) => (
                 <Link
                   href={track.url}
                   key={index}
