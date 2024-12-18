@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react"
 import { Music, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default function CDPlayer() {
   const [isLoading, setIsLoading] = useState(true)
@@ -51,14 +52,19 @@ export default function CDPlayer() {
           {/* <!-- CD Wrapper --> */}
           <div className="flex shrink-0 2xl:w-24 2xl:h-24 w-14 h-14 relative lg:mr-2">
             {/* <!-- CD Image --> */}
-            <Image
-              src={data.image}
-              alt="Album Art"
-              fill
-              className={`relative z-10 h-full w-full rounded-full object-cover
-        ${data?.isPlaying ? "animate-spin-slow" : ""}`}
-            />
-
+            {isLoading ? (
+              <Skeleton className="relative z-10 h-full w-full rounded-full object-cover animate-pulse " />
+            ) : (
+              <Image
+                src={data.image}
+                alt="Album Art"
+                fill
+                placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAQAAABIkb+zAAAAZUlEQVR42u3PQQ0AAAgEIK+C/bvq3wZu0ID01GsREBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQELgWXeNmwSNUasoAAAAASUVORK5CYII="
+                className={`relative z-10 h-full w-full rounded-full object-cover ${
+                  data?.isPlaying ? "animate-spin-slow" : ""
+                }`}
+              />
+            )}
             {/* <!-- CD Hole --> */}
             {/* <!-- Center Hole --> */}
             <div className="absolute left-1/2 top-1/2 z-20 h-1/5 w-1/5 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-gradient-to-br from-[rgba(255,175,189,1)] to-[rgba(100,216,255,1)] shadow-[inset_0_0_5px_rgba(0,0,0,0.7)]"></div>

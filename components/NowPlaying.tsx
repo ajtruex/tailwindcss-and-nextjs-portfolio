@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { SiSpotify } from "react-icons/si"
+import { Skeleton } from "@/components/ui/skeleton"
 
 // async function getNpOrRpSong() {
 //   const res = await fetch(
@@ -107,15 +108,18 @@ export default function NowPlaying() {
           </div>
         </div>
         <div className="flex justify-center items-center h-16 w-16 lg:h-20 lg:w-20 md:w-20 md:h-20 shadow-xl shadow-black	rounded-md">
-          <Image
-            src={data.image}
-            alt="album art"
-            width={80}
-            height={80}
-            quality={100}
-            className="rounded-lg"
-            placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAQAAAAkGDomAAAATElEQVR42u3OMQEAAAwCoNm/9Ep4eEACcuMiKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgo2PQocABR/yKl4wAAAABJRU5ErkJggg=="
-          />
+          {isLoading ? (
+            <div className="animate-pulse bg-zinc-800/50 rounded-lg h-16 w-16 lg:h-20 lg:w-20 md:w-20 md:h-20"></div>
+          ) : (
+            <Image
+              src={data.image}
+              alt="album art"
+              width={80}
+              height={80}
+              quality={100}
+              className="rounded-lg"
+            />
+          )}
         </div>
       </div>
     </div>

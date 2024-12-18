@@ -65,7 +65,7 @@ module.exports = {
         bounce:
           "bounce 0.5s alternate cubic-bezier(0.95, 0.05, 0.795, 0.035) infinite",
         slideUpCubiBezier: "slideUp 1s cubic-bezier(0.165, 0.84, 0.44, 1)",
-        pulse: "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        // pulse: "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         scrollIndicator: "scrollIndicator 2s ease-in-out infinite",
