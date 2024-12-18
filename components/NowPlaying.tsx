@@ -118,28 +118,6 @@ export default function NowPlaying() {
           />
         </div>
       </div>
-
-{/*       <div className="fixed bottom-4 left-4 flex flex-col items-start mx-auto  h-auto w-fit justify-center overflow-hidden rounded-xl border-2 border-[#00ffcc] bg-gradient-to-br from-[rgba(255,175,189,0.8)] to-[rgba(100,216,255,0.8)] p-4 bg-blend-screen shadow-[0_0_20px_#00ffcc,_inset_0_0_10px_rgba(255,255,255,0.05)] transition-all duration-500 hover:scale-110 hover:shadow-[0_0_35px_#00ffcc,_inset_0_0_15px_rgba(255,255,255,0.1)]">
-        <!-- Noisy Overlay -->
-        <div className="pointer-events-none absolute inset-0 mx-auto h-auto w-auto items-center justify-center rounded-xl bg-[url('https://www.transparenttextures.com/patterns/noisy-net.png')] opacity-75"></div>
-
-        <!-- CD Wrapper -->
-        <div className="relative h-32 w-32">
-          <!-- CD Image -->
-          <Image
-            // src="https://upload.wikimedia.org/wikipedia/en/2/26/Daft_Punk_-_Random_Access_Memories.png"
-            src={data.image}
-            alt="CD"
-            width={300}
-            height={300}
-            quality={100}
-            className="relative z-10 h-full w-full animate-spin-slow rounded-full object-cover"
-          />
-
-          <!-- Center Hole -->
-          <div className="absolute left-1/2 top-1/2 z-20 h-1/5 w-1/5 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-gradient-to-br from-[rgba(255,175,189,1)] to-[rgba(100,216,255,1)] shadow-[inset_0_0_5px_rgba(0,0,0,0.7)]"></div>
-        </div>
-      </div> */}
     </div>
   )
 }

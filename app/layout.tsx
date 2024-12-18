@@ -9,6 +9,7 @@ import Script from "next/script"
 import type { Metadata } from "next"
 import { CSPostHogProvider } from "./providers"
 import CommandMenu from "@/components/CMD"
+import CDPlayer from "@/components/CDPlayer"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://andrewtruex.com"),
@@ -66,6 +67,35 @@ const serif = Instrument_Serif({
   variable: "--font-serif",
 })
 
+import localFont from "next/font/local"
+const circular = localFont({
+  // src: "../fonts/circularstd-regular.ttf",
+  src: [
+    {
+      path: "../fonts/circularstd-regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/CircularStd-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../fonts/CircularStd-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../fonts/CircularSpUIv3T-Black.ttf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  variable: "--font-circular",
+})
+
 export default function RootLayout({
   children,
 }: {
@@ -74,7 +104,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${serif.variable}
+      className={`${inter.variable} ${serif.variable} ${circular.variable}
         antialiased`}
       suppressHydrationWarning
     >
@@ -153,6 +183,7 @@ export default function RootLayout({
             <CSPostHogProvider>
               <Navbar />
               {children}
+              <CDPlayer />
               <CommandMenu open={undefined} setOpen={undefined} />
               <SpeedInsights />
               <Analytics />
