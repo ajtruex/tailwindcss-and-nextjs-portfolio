@@ -55,38 +55,77 @@ const Dashboard = ({ username = "ajtruex" }) => {
         setLoading(true)
         setError(null)
 
+        const [events, user, repos, stats, pageviews, playcount] =
+          await Promise.all([
+            fetch(`/api/github/events?username=${username}`).then((res) => {
+              if (!res.ok) throw new Error("Failed to fetch GitHub events")
+              return res.json()
+            }),
+
+            fetch(`/api/github/user?username=${username}`, {
+              cache: "no-store",
+            }).then((res) => {
+              if (!res.ok) throw new Error("Failed to fetch GitHub user")
+              return res.json()
+            }),
+
+            fetch(`/api/github/repos?username=${username}`, {
+              cache: "no-store",
+            }).then((res) => {
+              if (!res.ok) throw new Error("Failed to fetch GitHub repos")
+              return res.json()
+            }),
+
+            fetch(`/api/github/stats?username=${username}`, {
+              cache: "no-store",
+            }).then((res) => {
+              if (!res.ok) throw new Error("Failed to fetch GitHub stats")
+              return res.json()
+            }),
+
+            fetch(`/api/analytics`, { cache: "no-store" }).then((res) => {
+              if (!res.ok) throw new Error("Failed to fetch pageviews")
+              return res.json()
+            }),
+
+            fetch(`/api/playcount`, { cache: "no-store" }).then((res) => {
+              if (!res.ok) throw new Error("Failed to fetch playcount")
+              return res.json()
+            }),
+          ])
+
         // Fetch data sequentially
-        const eventsResponse = await fetch(
-          `/api/github/events?username=${username}`
-        )
-        if (!eventsResponse.ok) throw new Error("Failed to fetch GitHub events")
-        const events = await eventsResponse.json()
+        // const eventsResponse = await fetch(
+        //   `/api/github/events?username=${username}`
+        // )
+        // if (!eventsResponse.ok) throw new Error("Failed to fetch GitHub events")
+        // const events = await eventsResponse.json()
 
-        const userResponse = await fetch(
-          `/api/github/user?username=${username}`
-        )
-        if (!userResponse.ok) throw new Error("Failed to fetch GitHub user")
-        const user = await userResponse.json()
+        // const userResponse = await fetch(
+        //   `/api/github/user?username=${username}`
+        // )
+        // if (!userResponse.ok) throw new Error("Failed to fetch GitHub user")
+        // const user = await userResponse.json()
 
-        const reposResponse = await fetch(
-          `/api/github/repos?username=${username}`
-        )
-        if (!reposResponse.ok) throw new Error("Failed to fetch GitHub repos")
-        const repos = await reposResponse.json()
+        // const reposResponse = await fetch(
+        //   `/api/github/repos?username=${username}`
+        // )
+        // if (!reposResponse.ok) throw new Error("Failed to fetch GitHub repos")
+        // const repos = await reposResponse.json()
 
-        const statsResponse = await fetch(
-          `/api/github/stats?username=${username}`
-        )
-        if (!statsResponse.ok) throw new Error("Failed to fetch GitHub stats")
-        const stats = await statsResponse.json()
+        // const statsResponse = await fetch(
+        //   `/api/github/stats?username=${username}`
+        // )
+        // if (!statsResponse.ok) throw new Error("Failed to fetch GitHub stats")
+        // const stats = await statsResponse.json()
 
-        const pageviewsResponse = await fetch(`/api/analytics`)
-        if (!pageviewsResponse.ok) throw new Error("Failed to fetch pageviews")
-        const pageviews = await pageviewsResponse.json()
+        // const pageviewsResponse = await fetch(`/api/analytics`)
+        // if (!pageviewsResponse.ok) throw new Error("Failed to fetch pageviews")
+        // const pageviews = await pageviewsResponse.json()
 
-        const playcountResponse = await fetch(`/api/playcount`)
-        if (!playcountResponse.ok) throw new Error("Failed to fetch playcount")
-        const playcount = await playcountResponse.json()
+        // const playcountResponse = await fetch(`/api/playcount`)
+        // if (!playcountResponse.ok) throw new Error("Failed to fetch playcount")
+        // const playcount = await playcountResponse.json()
 
         // Calculate stats
         const statistics = {
@@ -187,7 +226,7 @@ const Dashboard = ({ username = "ajtruex" }) => {
               </CardHeader>
               <CardContent className="flex justify-center items-center">
                 <div className="text-2xl font-bold">
-                  {data.pageviews.pageviews.value.toLocaleString()}
+                  {data.pageviews.result[0].aggregated_value.toLocaleString()}
                 </div>
               </CardContent>
             </Card>

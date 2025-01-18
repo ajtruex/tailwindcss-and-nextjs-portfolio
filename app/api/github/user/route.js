@@ -1,15 +1,18 @@
+// export const dynamic = "force-dynamic"
+
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url)
     const username = searchParams.get("username") || "ajtruex"
 
     const response = await fetch(`https://api.github.com/users/${username}`, {
+      cache: "no-cache",
       headers: {
         Accept: "application/vnd.github.v3+json",
         // Add GitHub token if you have one to increase rate limit
         // 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
       },
-      next: { revalidate: 3600 }, // Cache for 1 hour
+      // next: { revalidate: 3600 }, // Cache for 1 hour
     })
 
     if (!response.ok) {
@@ -35,8 +38,7 @@ export async function GET(request) {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control":
-          "max-age=3600, s-maxage=3600, stale-while-revalidate=7200",
+        "Cache-Control": "no-store, max-age=0",
       },
     })
   } catch (error) {
@@ -47,7 +49,10 @@ export async function GET(request) {
       }),
       {
         status: 500,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-store, max-age=0",
+        },
       }
     )
   }

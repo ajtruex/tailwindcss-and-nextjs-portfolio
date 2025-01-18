@@ -1,3 +1,5 @@
+// export const dynamic = "force-dynamic"
+
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url)
@@ -8,12 +10,13 @@ export async function GET(request) {
     const response = await fetch(
       `https://api.github.com/users/${username}/repos?sort=updated&page=${page}&per_page=${per_page}`,
       {
+        cache: "no-cache",
         headers: {
           Accept: "application/vnd.github.v3+json",
           // Add GitHub token if you have one to increase rate limit
           // 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
         },
-        next: { revalidate: 3600 }, // Cache for 1 hour
+        // next: { revalidate: 3600 }, // Cache for 1 hour
       }
     )
 
@@ -22,12 +25,13 @@ export async function GET(request) {
         page + 1
       }&per_page=${per_page}`,
       {
+        cache: "no-cache",
         headers: {
           Accept: "application/vnd.github.v3+json",
           // Add GitHub token if you have one to increase rate limit
           // 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
         },
-        next: { revalidate: 3600 }, // Cache for 1 hour
+        // next: { revalidate: 3600 }, // Cache for 1 hour
       }
     )
 
@@ -63,8 +67,7 @@ export async function GET(request) {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control":
-          "max-age=3600, s-maxage=3600, stale-while-revalidate=7200",
+        "Cache-Control": "no-store, max-age=0",
       },
     })
   } catch (error) {

@@ -1,15 +1,17 @@
 // app/api/github/route.js
+// export const dynamic = "force-dynamic"
 export async function GET(req) {
   try {
     const response = await fetch(
       "https://api.github.com/users/ajtruex/events",
       {
+        cache: "no-cache",
         headers: {
           Accept: "application/vnd.github.v3+json",
           // Add GitHub token if you have one to increase rate limit
           // 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
         },
-        next: { revalidate: 60 }, // Cache for 60 seconds
+        // next: { revalidate: 60 }, // Cache for 60 seconds
       }
     )
 
@@ -34,7 +36,7 @@ export async function GET(req) {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control": "max-age=60, s-maxage=60, stale-while-revalidate=600",
+        "Cache-Control": "no-store, max-age=0",
       },
     })
   } catch (error) {

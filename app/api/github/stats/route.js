@@ -1,3 +1,4 @@
+// export const dynamic = "force-dynamic"
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url)
@@ -6,6 +7,7 @@ export async function GET(request) {
     // Fetch user, events, and repos in parallel
     const [userResponse, eventsResponse, reposResponse] = await Promise.all([
       fetch(`https://api.github.com/users/${username}`, {
+        cache: "no-cache",
         headers: {
           Accept: "application/vnd.github.v3+json",
           // Add GitHub token if you have one to increase rate limit
@@ -13,6 +15,7 @@ export async function GET(request) {
         },
       }),
       fetch(`https://api.github.com/users/${username}/events/public`, {
+        cache: "no-cache",
         headers: {
           Accept: "application/vnd.github.v3+json",
           ...(process.env.GITHUB_TOKEN && {
@@ -21,6 +24,7 @@ export async function GET(request) {
         },
       }),
       fetch(`https://api.github.com/users/${username}/repos?per_page=100`, {
+        cache: "no-cache",
         headers: {
           Accept: "application/vnd.github.v3+json",
           ...(process.env.GITHUB_TOKEN && {
@@ -154,8 +158,7 @@ export async function GET(request) {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control":
-          "max-age=3600, s-maxage=3600, stale-while-revalidate=7200",
+        "Cache-Control": "no-store, max-age=0",
       },
     })
   } catch (error) {

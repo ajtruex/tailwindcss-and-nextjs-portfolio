@@ -1,3 +1,5 @@
+// export const dynamic = "force-dynamic"
+
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url)
@@ -11,7 +13,7 @@ export async function GET(request) {
           // Add GitHub token if you have one to increase rate limit
           // 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
         },
-        next: { revalidate: 60 },
+        // next: { revalidate: 60 },
       }
     )
 
