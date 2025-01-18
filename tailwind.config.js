@@ -60,6 +60,22 @@ module.exports = {
           from: { transform: "scale(0)" },
           to: { transform: "scale(1)" },
         },
+        moveUpIn: {
+          "0%": { transform: "translateY(20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        growHeight: {
+          from: { height: "380px" },
+          to: { height: "570px" },
+        },
+        shrinkHeight: {
+          from: { height: "570px" },
+          to: { height: "380px" },
+        },
+        marginPaddingGrow: {
+          from: { marginTop: "0", paddingBottom: "0" },
+          to: { marginTop: "2rem", paddingBottom: "2rem" },
+        },
       },
       animation: {
         bounce:
@@ -74,6 +90,11 @@ module.exports = {
         slideUp: "slideUp 1s ease-out forwards",
         fixed: "animation: fadeIn 0.3s ease-out",
         "spin-slow": "spin 3s linear infinite",
+        moveUpIn: "moveUpIn 0.5s ease-in",
+        growHeight: "growHeight 0.5s ease-in-out forwards",
+        shrinkHeight: "shrinkHeight 0.5s ease-out forwards",
+        marginPaddingGrow: "marginPaddingGrow 0.5s ease-in-out forwards",
+        marginPaddingShrink: "marginPaddingGrow 0.5s ease-in-out reverse",
       },
     },
   },

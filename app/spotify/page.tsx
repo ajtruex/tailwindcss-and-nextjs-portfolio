@@ -4,6 +4,7 @@
 import NowPlaying from "@/components/NowPlaying"
 import TopArtists from "@/components/TopArtists"
 import TopTracks from "@/components/TopTracks"
+import CD from "@/components/Disk"
 // import Tip from "@/components/Tip"
 
 export default function Spotify() {
@@ -22,13 +23,23 @@ export default function Spotify() {
             My Spotify stats
           </p>
         </div>
+        {/* <div className="flex justify-center -mb-6  hover:mb-0  h-[380px] overflow-y-hidden relative pt-12  opacity-100  z-10  hover:animate-growHeight hover:animated-marginPaddingGrow animate-shrinkHeight">
+          <div className="mt-3 ">
+            <CD />
+          </div>
+        </div> */}
+
         <div
-          className="flex flex-col lg:w-1/2 md:w-auto
+          className="flex flex-col lg:w-[536px] md:w-auto
         w-full mx-auto"
         >
           <NowPlaying />
         </div>
-
+        <div className="flex justify-center hover:mb-0  h-[380px] overflow-y-hidden relative pt-4  opacity-100  z-10  hover:animate-growHeight hover:animated-marginPaddingGrow animate-shrinkHeight">
+          <div className="mt-3 ">
+            <CD />
+          </div>
+        </div>
         {/* <div className="flex flex-row w-full"> */}
         <TopArtists />
         <TopTracks />
