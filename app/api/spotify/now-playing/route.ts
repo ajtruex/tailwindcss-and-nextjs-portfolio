@@ -20,7 +20,7 @@ export async function GET(request: Request) {
     name: track.name,
     artist: track.artist["#text"],
     url: track.url,
-    image: track.image[3]["#text"],
+    image: track.image[3]["#text"].replace("/300x300", ""),
   }
 
   return new Response(JSON.stringify(nowPlaying), {
