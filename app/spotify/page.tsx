@@ -35,7 +35,7 @@ export default function Spotify() {
         >
           <NowPlaying />
         </div>
-        <div className="flex justify-center hover:mb-0  h-[380px] overflow-y-hidden relative pt-4  opacity-100  z-10  hover:animate-growHeight hover:animated-marginPaddingGrow animate-shrinkHeight">
+        <div className="md:flex hidden justify-center hover:mb-0  h-[380px] overflow-y-hidden relative pt-4  opacity-100  z-10  hover:animate-growHeight hover:animated-marginPaddingGrow animate-shrinkHeight">
           <div className="mt-3 ">
             <CD />
           </div>
