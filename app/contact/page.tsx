@@ -10,7 +10,9 @@ import {
 } from "react-icons/fi"
 import { FaDev } from "react-icons/fa"
 import { SiLastdotfm, SiSpotify } from "react-icons/si"
+import { AiOutlineX } from "react-icons/ai"
 import Icon from "@/components/Icon"
+
 
 export const metadata = {
   title: "Contact",
@@ -35,12 +37,13 @@ const Contact = () => {
               Github
             </Link>
             <Link
-              href="https://twitter.com/ATrueDev"
+              href="https://x.com/web___guy"
               target="_blank"
               className="text-neutral-100 dark:text-neutral-100 flex items-center lg:text-6xl font-black hover:bg-violet-800 rounded-[30px] px-[10px] py-2 text-4xl"
             >
-              <FiTwitter className="lg:text-6xl lg:mr-48 mr-24 text-4xl" />
-              Twitter
+              {/* <FiTwitter className="lg:text-6xl lg:mr-48 mr-24 text-4xl" /> */}
+              <AiOutlineX className="lg:text-6xl lg:mr-48 mr-24 text-4xl" />
+              X.com
             </Link>
             <Link
               href="https://read.cv/truex"

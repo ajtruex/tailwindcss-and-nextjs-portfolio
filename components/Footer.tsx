@@ -3,7 +3,7 @@ import React from "react"
 import Link from "next/link"
 import {
   AiOutlineGithub,
-  AiOutlineTwitter,
+  AiOutlineX,
   AiOutlineLinkedin,
   AiOutlineYoutube,
 } from "react-icons/ai"
@@ -44,11 +44,11 @@ const Footer = () => {
             />
           </Link>
           <Link
-            href="https://twitter.com/ATrueDev"
+            href="https://x.com/web___guy"
             rel="noreferrer"
             target="_blank"
           >
-            <AiOutlineTwitter
+            <AiOutlineX
               className="hover:-translate-y-1 transition-transform cursor-pointer dark:text-neutral-100"
               size={30}
             />
