@@ -26,11 +26,11 @@ export default function Inspiration() {
       <Card className="w-auto flex rounded-xl hover:border-zinc-900/20 transition-colors cursor-pointer dark:hover:border-zinc-50/20 outline outline-1 dark:outline-[#ffffff24] outline-[#00000014] outline-offset-8">
         <video
           controls
-          poster="https://d34073qwlt06j3.cloudfront.net/kanye-poster.webp"
+          poster="https://d34073qwlt06j3.cloudfront.net/Bo-Burnham.webp"
           className="rounded-xl"
         >
           <source
-            src="https://d34073qwlt06j3.cloudfront.net/KanyeWestPerformsStrongerAndHeyMama.mp4"
+            src="https://d34073qwlt06j3.cloudfront.net/Bo-Burnham-Cant-Handle-This.mp4"
             type="video/mp4"
           />
         </video>
@@ -72,11 +72,11 @@ export default function Inspiration() {
           <Card className="w-auto flex dark:border-[#ffffff24] rounded-xl hover:border-zinc-900/20 transition-colors md:rotate-1 hover:md:rotate-0 cursor-pointer dark:hover:border-zinc-50/20 outline outline-1 dark:outline-[#ffffff24] outline-[#00000014] outline-offset-8 ">
             <video
               controls
-              poster="https://d34073qwlt06j3.cloudfront.net/rapisreligion.webp"
+              poster="https://d34073qwlt06j3.cloudfront.net/Bo-Burnham-Art-is-Dead.webp"
               className="rounded-xl"
             >
               <source
-                src="https://res.cloudinary.com/ajtruex/video/upload/q_auto:best/v1696464400/rapisreligion2023-08-21__021616.mp4"
+                src="https://d34073qwlt06j3.cloudfront.net/Bo-Burnham-Art-is-Dead.mp4"
                 type="video/mp4"
               />
             </video>
