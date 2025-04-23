@@ -76,6 +76,10 @@ module.exports = {
           from: { marginTop: "0", paddingBottom: "0" },
           to: { marginTop: "2rem", paddingBottom: "2rem" },
         },
+        "gradient-move": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
       },
       animation: {
         bounce:
@@ -95,6 +99,7 @@ module.exports = {
         shrinkHeight: "shrinkHeight 0.5s ease-out forwards",
         marginPaddingGrow: "marginPaddingGrow 0.5s ease-in-out forwards",
         marginPaddingShrink: "marginPaddingGrow 0.5s ease-in-out reverse",
+        "gradient-move": "gradient-move 2s ease-in-out infinite",
       },
     },
   },

@@ -21,12 +21,16 @@ export const HeroSection = () => {
           />
         </div>
         <div className="md:mt-2 md:w-3/5">
-          <h1 className="mt-6 text-4xl font-bold md:text-7xl md:mt-0">
+          <h1 className="mt-6 text-4xl font-normal md:text-7xl md:mt-0 font-serif tracking-tighter">
             Hi, I&#39;m Andrew.
           </h1>
-          <p className="mt-4 mb-6 text-lg md:text-2xl">
-            I&#39;m a web developer with a focus on unique web experiences and
-            products, preferably in the realm of movies, culture and comedy.
+          <p className="mt-4 mb-6 text-base md:text-lg">
+            I&#39;m a{" "}
+            <span className="font-serif italic underline decoration-2 decoration-violet-700 underline-offset-4">
+              web developer
+            </span>{" "}
+            with a focus on unique web experiences and products, inspired by
+            culture, film, and innovation.
           </p>
           {/* <Link
             to="projects"

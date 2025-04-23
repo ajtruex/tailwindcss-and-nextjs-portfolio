@@ -95,6 +95,60 @@ const circular = localFont({
   display: "swap",
   variable: "--font-circular",
 })
+const seasons = localFont({
+  src: [
+    {
+      path: "../fonts/The Seasons.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/The Seasons Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  variable: "--font-seasons",
+})
+const garamond = localFont({
+  src: [
+    {
+      path: "../fonts/AppleGaramond.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/AppleGaramond-Light.ttf",
+      weight: "300",
+      style: "light",
+    },
+    {
+      path: "../fonts/AppleGaramond-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  variable: "--font-garamond",
+})
+
+const gtsuperdisplay = localFont({
+  src: [
+    {
+      path: "../fonts/GT Super Display.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/GT Super Display Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  variable: "--font-gtsuperdisplay",
+})
 
 export default function RootLayout({
   children,
@@ -104,7 +158,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${serif.variable} ${circular.variable}
+      className={`${inter.variable} ${serif.variable} ${circular.variable} ${seasons.variable} ${garamond.variable} ${gtsuperdisplay.variable}
         antialiased`}
       suppressHydrationWarning
     >
