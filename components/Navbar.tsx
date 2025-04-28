@@ -50,8 +50,8 @@ const ICON_ITEMS = [
     icon: "RiLightbulbFlashLine",
   },
   {
-    label: "Now",
-    page: "/now",
+    label: "Dashboard",
+    page: "/dashboard",
     icon: "Activity",
   },
 ]
@@ -149,14 +149,14 @@ const Navbar = () => {
                   ) : item.icon === "RiLightbulbFlashLine" ? (
                     <div className="relative inline-block group">
                       <RiLightbulbFlashLine size={25} />
-                      <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute z-20 dark:bg-black rounded shadow-lg p-1.5 hidden md:inline-block -ml-8 mt-4 leading-none">
+                      <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute z-20 dark:bg-black rounded shadow-lg p-1.5 hidden md:inline-block -ml-10 mt-4 leading-none">
                         {item.label}
                       </div>
                     </div>
                   ) : item.icon === "Activity" ? (
                     <div className="relative inline-block group">
                       <Activity size={25} />
-                      <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute z-20 dark:bg-black rounded shadow-lg p-1.5 hidden md:inline-block -ml-6 mt-4 leading-none">
+                      <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute z-20 dark:bg-black rounded shadow-lg p-1.5 hidden md:inline-block -ml-10 mt-4 leading-none">
                         {item.label}
                       </div>
                     </div>

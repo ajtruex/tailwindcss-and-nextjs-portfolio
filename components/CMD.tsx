@@ -146,7 +146,7 @@ export default function CommandMenu({ open, setOpen }) {
               className="hover:cursor-pointer"
             >
               <Activity className="mr-2" />
-              <span>Now</span>
+              <span>Dashboard</span>
             </CommandItem>
           </CommandGroup>
         </CommandList>
