@@ -48,18 +48,31 @@ const ProjectSection = () => {
                 <div className="flex flex-col animate-slideUpCubiBezier animation-delay-2 md:flex-row md:space-x-12">
                   <div className="md:w-1/2 mt-8">
                     <Link href={`/projects/${project.route}`}>
-                      <Image
-                        src={project.image}
-                        alt=""
-                        quality={100}
-                        sizes="100vw"
-                        style={{
-                          aspectRatio: "16/9",
-                        }}
-                        width={1600}
-                        height={900}
-                        className="rounded-xl shadow-xl hover:opacity-70 object-cover object-left-top"
-                      />
+                      {project.video ? (
+                        <video
+                          src={project.video}
+                          autoPlay
+                          loop
+                          muted
+                          className="rounded-xl shadow-xl hover:opacity-70 object-cover"
+                          style={{
+                            aspectRatio: "16/9",
+                          }}
+                        />
+                      ) : (
+                        <Image
+                          src={project.image}
+                          alt=""
+                          quality={100}
+                          sizes="100vw"
+                          style={{
+                            aspectRatio: "16/9",
+                          }}
+                          width={1600}
+                          height={900}
+                          className="rounded-xl shadow-xl hover:opacity-70 object-cover"
+                        />
+                      )}
                     </Link>
                   </div>
                   <div className="md:w-1/2 mt-12">

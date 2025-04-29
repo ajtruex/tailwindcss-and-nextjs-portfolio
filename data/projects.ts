@@ -47,6 +47,8 @@ export const projects = [
     name: "Portfolio",
     description: "My personal portfolio website built with Next.js.",
     image: "/next-portfolio2.png",
+    video:
+      "https://hsgdrwmooz3njynx.public.blob.vercel-storage.com/next-portfolio2.mp4",
     github: "https://github.com/ajtruex/tailwindcss-and-nextjs-portfolio",
     link: "https://andrewtruex.com/",
     route: "new-portfolio",

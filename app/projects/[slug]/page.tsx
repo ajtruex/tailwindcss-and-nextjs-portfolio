@@ -75,14 +75,36 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
         />
       </div> */}
       <div className="flex justify-center">
-        <Image
+        {project.video ? (
+          <video
+            src={project.video}
+            autoPlay
+            loop
+            muted
+            className="rounded-xl shadow-xl"
+            style={{
+              aspectRatio: "16/9",
+            }}
+          />
+        ) : (
+          <Image
+            src={project.image}
+            alt=""
+            quality={100}
+            priority
+            width={1000}
+            height={1000}
+            className="rounded-xl shadow-xl"
+          />
+        )}
+        {/* <Image
           src={project.image}
           alt=""
           width={750}
           height={750}
           className="rounded-xl shadow-xl"
           priority
-        />
+        /> */}
       </div>
       <h2 className="text-5xl font-bold text-center mt-12">
         Tools

@@ -75,15 +75,28 @@ const Projects = () => {
               className="hover:-translate-y-2 transition-transform transform flex"
             >
               <Card className="rounded-xl shadow-xl hover:opacity-70 transition-opacity dark:bg-zinc-800">
-                <CardHeader className="pt-0 px-0 pb-3">
-                  <Image
-                    src={project.image}
-                    alt=""
-                    quality={100}
-                    width={1600}
-                    height={900}
-                    className="rounded-b-none rounded-t-xl object-cover object-left-top aspect-video"
-                  />
+                <CardHeader className="pt-0 px-0 pb-3 space-y-0">
+                  {project.video ? (
+                    <video
+                      src={project.video}
+                      autoPlay
+                      loop
+                      muted
+                      className="rounded-t-xl object-cover object-left-top aspect-video "
+                      style={{
+                        aspectRatio: "16/9",
+                      }}
+                    />
+                  ) : (
+                    <Image
+                      src={project.image}
+                      alt=""
+                      quality={100}
+                      width={1600}
+                      height={900}
+                      className="rounded-b-none rounded-t-xl object-cover object-left-top aspect-video"
+                    />
+                  )}
                 </CardHeader>
                 <CardContent className="">
                   <CardTitle className="mb-3">{project.name}</CardTitle>
