@@ -10,7 +10,7 @@ export const metadata = {
 
 const About = () => {
   return (
-    <div className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl">
+    <div className="mx-auto px-6 sm:px-4">
       <AboutSection />
     </div>
   )

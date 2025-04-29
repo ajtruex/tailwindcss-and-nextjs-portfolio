@@ -99,7 +99,7 @@ module.exports = {
         shrinkHeight: "shrinkHeight 0.5s ease-out forwards",
         marginPaddingGrow: "marginPaddingGrow 0.5s ease-in-out forwards",
         marginPaddingShrink: "marginPaddingGrow 0.5s ease-in-out reverse",
-        "gradient-move": "gradient-move 2s ease-in-out infinite",
+        "gradient-move": "gradient-move 3s ease-in-out infinite",
       },
     },
   },

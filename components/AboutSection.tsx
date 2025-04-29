@@ -2,34 +2,79 @@
 import React from "react"
 import { HiArrowDown } from "react-icons/hi"
 import { Link } from "react-scroll/modules"
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiTypescript,
+  SiNodedotjs,
+  SiVercel,
+  SiJavascript,
+  SiPython,
+  SiHtml5,
+  SiGit,
+  SiCss3,
+  SiVuedotjs,
+} from "react-icons/si"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { motion } from "framer-motion"
 
 const skills = [
-  { skill: "HTML" },
-  { skill: "CSS" },
-  { skill: "JavaScript" },
-  { skill: "TypeScript" },
-  { skill: "React" },
-  { skill: "Next.js" },
-  { skill: "Tailwind CSS" },
-  { skill: "Vue.js" },
-  { skill: "Python" },
-  { skill: "Git" },
-  { skill: "Vercel" },
+  { skill: "HTML", icon: SiHtml5 },
+  { skill: "CSS", icon: SiCss3 },
+  { skill: "JavaScript", icon: SiJavascript },
+  { skill: "TypeScript", icon: SiTypescript },
+  { skill: "Node.js", icon: SiNodedotjs },
+  { skill: "React", icon: SiReact },
+  { skill: "Next.js", icon: SiNextdotjs },
+  { skill: "Tailwind CSS", icon: SiTailwindcss },
+  { skill: "Vue.js", icon: SiVuedotjs },
+  { skill: "Python", icon: SiPython },
+  { skill: "Git", icon: SiGit },
+  { skill: "Vercel", icon: SiVercel },
 ]
+
+const SkillIcon = ({ icon: Icon, skill, className }) => (
+  <TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="items-center justify-center flex"
+        >
+          <Icon className="w-6 h-6 mr-1" />
+          {skill}
+        </motion.div>
+      </TooltipTrigger>
+      <TooltipContent
+        side="bottom"
+        className="bg-secondary text-secondary-foreground"
+      >
+        <p>{skill}</p>
+      </TooltipContent>
+    </Tooltip>
+  </TooltipProvider>
+)
 
 const AboutSection = () => {
   return (
     <section id="about">
-      <div className="my-12  md:pt-16 ">
+      <div className="mt-12">
         <h1 className="text-center font-bold text-4xl">
           About Me
           <hr className="w-6 h-1 mx-auto my-4 bg-gradient-to-r from-indigo-500    to-fuchsia-500 border-0 rounded"></hr>
         </h1>
         <div className="flex flex-col md:flex-row space-y-10 items-stretch justify-center align-top md:text-left md:p-4 md:space-y-0 md:space-x-10">
           <div className="md:w-1/2 mx-auto text-center text-pretty">
-            <h1 className="text-center text-2xl font-bold mb-6 md:text-center">
+            <div className="text-center text-2xl font-bold mb-6 md:text-center">
               Get to know me
-            </h1>
+            </div>
             <p className="leading-snug">
               I am a Web Developer and Software Engineer, passionate about
               creating meaningful digital experiences. Since my first encounter
@@ -50,9 +95,11 @@ const AboutSection = () => {
               experiences that combine visual appeal with functionality,
               focusing on intuitive interfaces and seamless interactions.
             </p>
-            <br />
-            <h2 className="font-bold text-xl text-center">What Drives Me</h2>
-            <br />
+
+            <div className="text-center text-2xl font-bold mb-6 mt-12 md:text-center">
+              What Drives Me
+            </div>
+
             <ul className="list-none text-start text-wrap">
               <li>
                 <span className="font-bold">A thirst for knowledge:</span> My
@@ -73,8 +120,9 @@ const AboutSection = () => {
           </div>
           <div className="text-center md:w-1/2 md:text-center">
             <h1 className="text-2xl font-bold mb-6">My Skills</h1>
-            <div className="flex flex-wrap flex-row justify-center z-10 md:justify-center">
-              {skills.map((item, idx) => {
+
+            <div className="flex flex-wrap justify-center z-10  md:justify-center  ">
+              {skills.map(({ skill, icon }, idx) => {
                 // Array of Tailwind three-color gradient combinations
                 const gradients = [
                   "from-purple-600 via-pink-600 to-blue-600",
@@ -92,19 +140,21 @@ const AboutSection = () => {
                 const gradientClass = gradients[idx % gradients.length]
 
                 return (
-                  <div
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     key={idx}
                     className={`
-                      relative inline-block p-[1px] rounded-md mr-2 mt-3
+                      flex p-[1px] rounded-md mr-[6px] mt-2
                       bg-gradient-to-r ${gradientClass}
-                      hover:animate-gradient-move
+                      animate-gradient-move
                       [background-size:200%_200%]
                     `}
                   >
-                    <div className="px-4 py-2 bg-white dark:bg-zinc-950 rounded-md font-normal">
-                      {item.skill}
+                    <div className="flex flex-grow px-2 py-2 bg-white dark:bg-zinc-800 rounded-md text-base items-center">
+                      <SkillIcon icon={icon} skill={skill} />
                     </div>
-                  </div>
+                  </motion.div>
                 )
               })}
             </div>
