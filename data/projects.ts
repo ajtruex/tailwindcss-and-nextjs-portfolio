@@ -3,7 +3,7 @@ export const projects = [
     name: "WhoSampled Raycast Extension",
     description:
       "Search WhoSampled.com from the currently playing song in Spotify",
-    image: "/whosampled.png",
+    image: "/whosampled-raycast2.png",
     github:
       "https://github.com/raycast/extensions/tree/main/extensions/whosampled",
     link: "https://www.raycast.com/truex/whosampled",
@@ -18,7 +18,7 @@ export const projects = [
     name: "Spoqify Raycast Extension",
     description:
       "Spoqify is an MIT-licensed dead-simple service that allows you to access Spotify playlists like an anonymous user",
-    image: "/spoqify-16x9.png",
+    image: "/spoqify-raycast.png",
     github:
       "https://github.com/raycast/extensions/tree/main/extensions/spoqify",
     link: "https://www.raycast.com/truex/spoqify",
@@ -46,7 +46,7 @@ export const projects = [
   {
     name: "Portfolio",
     description: "My personal portfolio website built with Next.js.",
-    image: "/next-portfolio.png",
+    image: "/next-portfolio2.png",
     github: "https://github.com/ajtruex/tailwindcss-and-nextjs-portfolio",
     link: "https://andrewtruex.com/",
     route: "new-portfolio",
