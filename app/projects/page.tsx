@@ -1,8 +1,10 @@
-import React from "react"
+"use client"
+import React, { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { projects } from "@/data/projects"
 import { Metadata } from "next"
+import { motion } from "framer-motion"
 import {
   Card,
   CardContent,
@@ -11,70 +13,101 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import whosampled from "@/public/whosampled.png"
-
-export const metadata = {
-  title: "Projects",
-  icons: {
-    icon: "/directory_computer.ico",
-  },
-}
-// const projects = [
-//   {
-//     name: "Portfolio",
-//     description: "My old personal portfolio website built with Vue.js.",
-//     image: "/portfolio2.png",
-//     github: "https://github.com/ajtruex/portfolio2",
-//     link: "https://beta.andrewtruex.tech/",
-//     route: "Portfolio",
-//   },
-//   {
-//     name: "MovieVuer",
-//     description: "A movie review aggregator made with Vue.js.",
-//     image: "/movievuer.png",
-//     github: "https://github.com/ajtruex/MovieVuer",
-//     link: "https://movievuer.netlify.app/",
-//   },
-//   {
-//     name: "Next Movies",
-//     description: "A movie review aggregator made with Next.js.",
-//     image: "/next-movies.png",
-//     github: "https://github.com/ajtruex/next-movies",
-//     link: "http://movies.andrewtruex.tech/",
-//   },
-//   {
-//     name: "BS Upcycled Home Decor",
-//     description:
-//       "A website for a local business built with Next.js featuring an image gallery.",
-//     image: "/bs2.png",
-//     github: "https://github.com/ajtruex/bsupcycledhomedecor",
-//     link: "https://bsupcycledhomedecor.com/",
-//   },
-//   {
-//     name: "WhoSampled Raycast Extension",
-//     description:
-//       "Search WhoSampled.com from the currently playing song in Spotify",
-//     image: "/whosampled-raycast-extension.png",
-//     github:
-//       "https://github.com/raycast/extensions/tree/main/extensions/whosampled",
-//     link: "https://www.raycast.com/truex/whosampled",
-//   },
-// ]
+import { BsArrowUpRight } from "react-icons/bs"
 
 const Projects = () => {
+  // Remove screen state, use isClient instead
+  const [isClient, setIsClient] = useState(false)
+  const [loading, setLoading] = useState<boolean>(true)
+
+  // Ref to store positions of each card
+  const positionsRef = useRef<{ [key: number]: { x: string; y: string } }>({})
+
+  // State to store z-indices of each card
+  const [zIndices, setZIndices] = useState<{
+    [key: number]: number
+  }>({})
+
+  useEffect(() => {
+    setIsClient(true)
+    setLoading(false)
+
+    let initialZIndices: { [key: number]: number } = {}
+    for (let i = 0; i < projects.length; i++) {
+      // Set z-index based on array order - first project gets highest z-index
+      let newZIndex = projects.length - i + 100
+      initialZIndices[i] = newZIndex
+    }
+
+    // This is our max zIndex, which will increment whenever user interacts w/ a card
+    initialZIndices[-1] = projects.length + 120
+
+    setZIndices(initialZIndices)
+  }, [])
+
+  const handleCardClick = (index: number) => {
+    const newZIndices = { ...zIndices }
+    newZIndices[-1] += 1
+    newZIndices[index] = newZIndices[-1]
+    setZIndices(newZIndices)
+  }
+
+  // Generate random positions and store them in the ref
+  const getRandomPosition = (index: number) => {
+    if (!positionsRef.current[index] && isClient) {
+      // Use fixed dimensions for cards (adjust as needed)
+      const cardWidth = 250
+      const cardHeight = 200
+
+      // Offset from the top to avoid overlapping the header
+      const topOffset = 250 // px, adjust as needed to match header height
+
+      // Access window directly
+      const containerWidth = window.innerWidth - 100
+      const containerHeight = window.innerHeight
+
+      const maxX = Math.max(0, containerWidth - cardWidth)
+      const maxY = Math.max(0, containerHeight - cardHeight - topOffset)
+
+      const randomX = Math.random() * maxX
+      const randomY = topOffset + Math.random() * maxY
+
+      positionsRef.current[index] = { x: `${randomX}px`, y: `${randomY}px` }
+    }
+    return positionsRef.current[index]
+  }
+
+  if (loading) {
+    return (
+      <div className="mx-auto px-4 sm:px-6">
+        <h1 className="text-5xl text-center font-bold mt-20 mb-12">Projects</h1>
+        <div className="flex justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-zinc-500" />
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="mx-auto  px-4 sm:px-6 ">
+    <div className="mx-auto px-4 sm:px-6 min-h-screen">
       <h1 className="text-5xl text-center font-bold mt-20 mb-12">Projects</h1>
-      {/* <div className="grid lg:grid-cols-3 lg:gap-8 md:grid-cols-3 md:gap-5 grid-cols-1 gap-5"> */}
-      <div className="grid grid-cols-3 gap-4 items-stretch">
-        {projects.map((project, idx) => {
-          return (
-            <Link
-              key={idx}
-              href={`/projects/${project.route}`}
-              className="hover:-translate-y-2 transition-transform transform flex"
+
+      {/* Grid Layout for small screens (below lg) */}
+      <div className="block lg:hidden">
+        <div className="grid grid-cols-1 gap-6 mx-auto">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100,
+                damping: 15,
+              }}
             >
-              <Card className="rounded-xl shadow-xl hover:opacity-70 transition-opacity dark:bg-zinc-800">
+              <Card className="rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 dark:bg-zinc-800 w-[400px] mx-auto">
                 <CardHeader className="pt-0 px-0 pb-3 space-y-0">
                   {project.video ? (
                     <video
@@ -82,7 +115,7 @@ const Projects = () => {
                       autoPlay
                       loop
                       muted
-                      className="rounded-t-xl object-cover object-left-top aspect-video "
+                      className="rounded-t-xl object-cover object-left-top aspect-video"
                       style={{
                         aspectRatio: "16/9",
                       }}
@@ -98,35 +131,199 @@ const Projects = () => {
                     />
                   )}
                 </CardHeader>
-                <CardContent className="">
-                  <CardTitle className="mb-3">{project.name}</CardTitle>
-                  <CardDescription className="">
+                <CardContent className="p-4">
+                  <Link href={`/projects/${project.route}`} className="block">
+                    <CardTitle className="mb-3 text-lg hover:text-blue-600 transition-colors">
+                      {project.name}
+                      <BsArrowUpRight
+                        size={14}
+                        className="inline ml-1 mb-0.5"
+                      />
+                    </CardTitle>
+                  </Link>
+                  <CardDescription className="text-sm line-clamp-2">
                     {project.description}
                   </CardDescription>
-                </CardContent>
-                {/* <CardFooter>
-                  <Link href={`/projects/${project.route}`}>View Project</Link>
-                </CardFooter> */}
-              </Card>
-            </Link>
 
-            //  <div className="hover:-translate-y-2 transition-transform transform">
-            // <Link href={`/projects/${project.route}`}>
-            // <Image
-            // src={project.image}
-            // alt=""
-            // width={1000}
-            // height={1000}
-            // className="rounded-xl shadow-xl hover:opacity-70 aspect-auto"
-            // />
-            // <h1 className="text-4xl font-semibold mb-3 mt-6 text-center">
-            // {project.name}
-            // </h1>
-            // <p className="text-lg mb-4 text-neutral-600 dark:text-neutral-400 md:text-start text-center">
-            // {project.description}
-            // </p>
-            // </Link>
-            //  </div>
+                  {/* Tools used */}
+                  {project.tools && (
+                    <div className="flex flex-nowrap gap-1 mt-3 max-h-16">
+                      {project.tools.length > 3 ? (
+                        <>
+                          {project.tools.slice(0, 3).map((tool, toolIndex) => (
+                            <div
+                              key={toolIndex}
+                              className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-700 px-1 py-1 rounded-md text-xs break-words"
+                            >
+                              <Image
+                                src={tool.image}
+                                alt={tool.name}
+                                width={12}
+                                height={12}
+                                className="rounded-sm"
+                              />
+                              <span>{tool.name}</span>
+                            </div>
+                          ))}
+                          <span className="text-xs text-zinc-500 px-2 py-1 text-nowrap">
+                            +{project.tools.length - 3} more
+                          </span>
+                        </>
+                      ) : (
+                        project.tools.map((tool, toolIndex) => (
+                          <div
+                            key={toolIndex}
+                            className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-700 px-1 py-1 rounded-md text-xs break-words"
+                          >
+                            <Image
+                              src={tool.image}
+                              alt={tool.name}
+                              width={12}
+                              height={12}
+                              className="rounded-sm"
+                            />
+                            <span>{tool.name}</span>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Scattered Cards Container for larger screens (lg and above) */}
+      <div className="hidden lg:flex w-full h-[80vh]">
+        {projects.map((project, index) => {
+          if (!isClient) return null
+          const { x, y } = getRandomPosition(index)
+          const zIndex = zIndices[index]
+
+          return (
+            // Make sure the Link doesn't interfere with dragging
+            <motion.div
+              key={project.name}
+              className="absolute"
+              drag
+              dragMomentum={false}
+              style={{
+                zIndex: zIndex,
+                left: x,
+                top: y,
+              }}
+              onMouseDown={() => handleCardClick(index)}
+              onTouchStart={() => handleCardClick(index)}
+              whileHover={{
+                scale: 1.05,
+                translateY: -4,
+              }}
+              whileDrag={{
+                scale: 1.1,
+              }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100,
+                damping: 15,
+              }}
+            >
+              <Card className="rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 dark:bg-zinc-800 cursor-grab active:cursor-grabbing w-[250px]">
+                <CardHeader className="pt-0 px-0 pb-3 space-y-0">
+                  {project.video ? (
+                    <video
+                      src={project.video}
+                      autoPlay
+                      loop
+                      muted
+                      className="rounded-t-xl object-cover object-left-top aspect-video"
+                      style={{
+                        aspectRatio: "16/9",
+                      }}
+                    />
+                  ) : (
+                    <Image
+                      src={project.image}
+                      alt=""
+                      quality={100}
+                      width={1600}
+                      height={900}
+                      className="rounded-b-none rounded-t-xl object-cover object-left-top aspect-video"
+                      style={{
+                        aspectRatio: "16/9",
+                      }}
+                      draggable={false}
+                    />
+                  )}
+                </CardHeader>
+                <CardContent className="p-4">
+                  <Link
+                    href={`/projects/${project.route}`}
+                    className="block"
+                    draggable="false"
+                  >
+                    <CardTitle className="mb-3 text-lg hover:text-blue-600 transition-colors">
+                      {project.name}
+                      <BsArrowUpRight
+                        size={14}
+                        className="inline ml-1 mb-0.5"
+                      />
+                    </CardTitle>
+                  </Link>
+                  <CardDescription className="text-sm line-clamp-2">
+                    {project.description}
+                  </CardDescription>
+
+                  {/* Tools used */}
+                  {project.tools && (
+                    <div className="flex flex-wrap gap-1 mt-3">
+                      {project.tools.length > 3 ? (
+                        <>
+                          {project.tools.slice(0, 3).map((tool, toolIndex) => (
+                            <div
+                              key={toolIndex}
+                              className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-700 px-1 py-1 rounded-md text-xs"
+                            >
+                              <Image
+                                src={tool.image}
+                                alt={tool.name}
+                                width={12}
+                                height={12}
+                                className="rounded-sm"
+                              />
+                              <span>{tool.name}</span>
+                            </div>
+                          ))}
+                          <span className="text-xs text-zinc-500 px-2 py-1">
+                            +{project.tools.length - 3} more
+                          </span>
+                        </>
+                      ) : (
+                        project.tools.map((tool, toolIndex) => (
+                          <div
+                            key={toolIndex}
+                            className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-700 px-2 py-1 rounded-md text-xs"
+                          >
+                            <Image
+                              src={tool.image}
+                              alt={tool.name}
+                              width={12}
+                              height={12}
+                              className="rounded-sm"
+                            />
+                            <span>{tool.name}</span>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </motion.div>
           )
         })}
       </div>

@@ -100,7 +100,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`md:fixed z-[100] flex-row items-center md:rounded-full rounded-xl border bg-white bg-opacity-95 px-6 py-2 shadow-xl backdrop-blur-sm backdrop-filter dark:border-slate-100/10 dark:bg-black md:dark:bg-opacity-75 dark:bg-opacity-90 lg:left-1/2 md:flex lg:-translate-x-1/2 lg:transform md:ml-12 top-24 md:left-1/4 inset-x-0 md:inset-x-auto absolute left-0 md:top-8 ${
+        className={`md:fixed z-[200] flex-row items-center md:rounded-full rounded-xl border bg-white bg-opacity-95 px-6 py-2 shadow-xl backdrop-blur-sm backdrop-filter dark:border-slate-100/10 dark:bg-black md:dark:bg-opacity-75 dark:bg-opacity-90 lg:left-1/2 md:flex lg:-translate-x-1/2 lg:transform md:ml-12 top-24 md:left-1/4 inset-x-0 md:inset-x-auto absolute left-0 md:top-8 ${
           navbar ? "block" : "hidden z-[100]"
         } md:block`}
       >

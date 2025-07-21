@@ -67,7 +67,7 @@ export const projects = [
     route: "NextMovies",
     tools: [
       { name: "Next.js", image: "/nextjs-logo.png" },
-      { name: "The Movie Database API", image: "/tmdb-full-logo.svg" },
+      { name: "TMDB", image: "/tmdb-full-logo.svg" },
       { name: "Vercel", image: "/vercel-logo.png" },
       { name: "Tailwind CSS", image: "/tailwind-logo.png" },
     ],
@@ -113,7 +113,7 @@ export const projects = [
     slug: "movievuer",
     tools: [
       { name: "Vue.js", image: "/vue-logo.png" },
-      { name: "The Movie Database API", image: "/tmdb-full-logo.svg" },
+      { name: "TMDB", image: "/tmdb-full-logo.svg" },
       { name: "Netlify", image: "/netlify-logo.png" },
       { name: "Bootstrap", image: "/bootstrap-logo.png" },
     ],
