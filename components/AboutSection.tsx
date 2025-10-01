@@ -89,11 +89,7 @@ const AboutSection = () => {
               experiences at the intersection of technology and art. Inspired by
               film, culture, and humor, I design web experiences that combine
               visual appeal with functionality, focusing on intuitive interfaces
-              and seamless interactions.My focus lies in creating intuitive and
-              engaging digital experiences at the intersection of technology and
-              art. Inspired by film, culture, and humor, I design web
-              experiences that combine visual appeal with functionality,
-              focusing on intuitive interfaces and seamless interactions.
+              and seamless interactions.
             </p>
 
             <div className="text-center text-2xl font-bold mb-6 mt-12 md:text-center">
